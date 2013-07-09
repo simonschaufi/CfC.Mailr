@@ -1,0 +1,145 @@
+<f:layout name="BackendSubModule" />
+
+<f:section name="subtitle">
+	<div class="row neos-module-container indented">
+		<h2>Set Up Your New List</h2>
+	</div>
+</f:section>
+
+<f:section name="content">
+	<f:form action="create" name="recipientList" object="{recipientList}">
+		<div class="neos-module-container indented">
+			<div class="row-fluid">
+				<div class="span6">
+					<legend>List</legend>
+
+					<div class="control-group">
+						<label class="control-label" for="listName">List Name <span class="text-error">*</span></label>
+						<div class="controls">
+							<f:form.textfield property="listName" id="listName" class="span11" />
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="defaultFromName">Default From Name <span class="text-error">*</span></label>
+						<div class="controls">
+							<f:form.textfield property="defaultFromName" id="defaultFromName" class="span11" />
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="defaultReplyToEmail">Default Reply-To Email <span class="text-error">*</span></label>
+						<div class="controls">
+							<f:form.textfield property="defaultReplyToEmail" id="defaultReplyToEmail" class="span11" />
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="defaultSubject">Default Subject</label>
+						<div class="controls">
+							<f:form.textfield property="defaultSubject" id="defaultSubject" class="span11" />
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="description">Remind people how they got on your list</label>
+						<div class="controls">
+							<f:form.textarea property="description" id="description" class="span11" />
+						</div>
+					</div>
+
+				</div>
+
+				<div class="span6">
+					<legend>Personal Data</legend>
+
+					<div class="control-group">
+						<label class="control-label" for="company">Company <span class="text-error">*</span></label>
+						<div class="controls">
+							<f:form.textfield property="company" id="company" class="span11" />
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="address">Address <span class="text-error">*</span></label>
+						<div class="controls">
+							<f:form.textfield property="address" id="address" class="span11" />
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="city">City <span class="text-error">*</span></label>
+						<div class="controls">
+							<f:form.textfield property="city" id="city" class="span11" />
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="zip">Zip/Postal Code <span class="text-error">*</span></label>
+						<div class="controls">
+							<f:form.textfield property="zip" id="zip" class="span11"/>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="country">Country <span class="text-error">*</span></label>
+						<div class="controls">
+							<f:form.textfield property="country" id="country" class="span11"/>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="phone">Phone</label>
+						<div class="controls">
+							<f:form.textfield property="phone" id="phone" class="span11"/>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="row-fluid">
+				<div class="span12">
+
+					<div class="control-group">
+						<label class="control-label">Notifications</label>
+						<div class="row-fluid">
+							<div class="span6">
+								<label class="checkbox">
+									<input type="checkbox"> Daily Summary: summary of subscribe/unsubscribe activity
+								</label>
+							</div>
+							<div class="span6">
+								<label class="checkbox">
+									<input type="checkbox"> One By One: subscribe notifications as they happen
+								</label>
+								<label class="checkbox">
+									<input type="checkbox"> One By One: unsubscribe notifications as they happen
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label">Email Format</label>
+						<div class="row-fluid">
+							<div class="controls">
+								<label class="checkbox">
+									<input type="checkbox"> People Can Pick Email Format (HTML Or Plain-Text)
+								</label>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="form-actions form-footer">
+			<f:link.action action="index" class="btn t3-button">Cancel</f:link.action>
+			<div class="pull-right">
+				<f:form.submit value="Save" class="btn btn-primary neos-button" />
+			</div>
+		</div>
+	</f:form>
+</f:section>

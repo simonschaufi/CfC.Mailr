@@ -1,0 +1,248 @@
+{namespace neos=TYPO3\Neos\ViewHelpers}
+<f:layout name="BackendSubModule" />
+
+<f:section name="content">
+	<div class="row neos-module-container indented">
+		<table class="table">
+			<thead>
+				<tr>
+					<th></th>
+					<th>List Name</th>
+					<th>Subscribers</th>
+					<th>Rating</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<f:for each="{recipientLists}" as="recipientList">
+					<tr>
+						<td><div class="btn-group">
+							<a class="btn neos-button dropdown-toggle" data-toggle="dropdown" href="#">View <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Stats Overview</a></li>
+								<li><f:link.action action="members" arguments="{recipientList: recipientList}">Subscribers</f:link.action></li>
+							</ul></div>
+						</td>
+						<td>{recipientList.listName}</td>
+						<td><f:link.action action="members" arguments="{recipientList: recipientList}"><f:count subject="{recipientList.members}" /> Subscribers</f:link.action></td>
+						<td><f:if condition="{recipientList.rating}"><f:then>{recipientList.rating}</f:then><f:else>no rating yet</f:else></f:if></td>
+						<td>
+							<div class="btn-group pull-right">
+								<a class="btn neos-button dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-cog"></i> <b class="caret"></b></a>
+								<div class="dropdown-menu pull-right">
+									<div class="span2">
+											<div class="nav-list">
+												<div class="control-group">&nbsp;<!-- placeholder --></div>
+												<div class="control-group">
+													<div class="controls">
+														<a href="#" class="btn neos-button btn-block">Replicate</a>
+													</div>
+												</div>
+												<div class="control-group">
+													<div class="controls">
+														<a href="#{recipientList -> f:format.identifier()}" class="btn neos-button btn-block btn-danger" data-toggle="modal">Delete</a>
+													</div>
+												</div>
+											</div>
+									</div>
+									<div class="span2">
+										<ul class="nav nav-list">
+											<li class="nav-header">Subscribers</li>
+											<li><a href="#">Import</a></li>
+											<li><neos:link.module path="mail/lists/members" action="show" arguments="{recipientList: recipientList}">Subscribe</neos:link.module></li>
+											<li><a href="#">Unsubscribe</a></li>
+											<li class="nav-header">Delivery</li>
+											<li><a href="#">Send to list</a></li>
+											<li><a href="#">Email beamer</a></li>
+										</ul>
+									</div>
+									<div class="span2">
+										<ul class="nav nav-list">
+											<li class="nav-header">Forms and fields</li>
+											<li><a href="#">Forms</a></li>
+											<li><a href="#">List data</a></li>
+											<li><a href="#">Combine lists</a></li>
+											<li><a href="#">Integrations</a></li>
+										</ul>
+									</div>
+									<div class="span2">
+										<ul class="nav nav-list">
+											<li class="nav-header">Settings</li>
+											<li><a href="#">List settings</a></li>
+											<li><a href="#">List name and defaults</a></li>
+											<li><a href="#">Help</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="modal hide" id="{recipientList -> f:format.identifier()}">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h3>Are you sure you want to delete list "{recipientList.listName}"?</h3>
+									<p>This will delete the list including all recipients.
+										This operation cannot be undone.</p>
+								</div>
+								<div class="modal-footer">
+									<f:form action="delete" arguments="{recipientList: recipientList}">
+										<a href="#" class="btn neos-button" data-dismiss="modal">Cancel</a>
+										<button class="btn btn-danger neos-button" title="Delete">
+											<i class="icon-trash icon-white"></i>
+											Delete
+										</button>
+									</f:form>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</f:for>
+				<!--<tr>
+					<td><div class="btn-group">
+						<a class="btn neos-button dropdown-toggle" data-toggle="dropdown" href="#">View <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Stats Overview</a></li>
+							<li><a href="#">Subscribers</a></li>
+						</ul></div>
+					</td>
+					<td>My Neos List</td>
+					<td>52 Subscribers</td>
+					<td>no rating yet</td>
+					<td>
+						<div class="btn-group pull-right">
+							<a class="btn neos-button dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-cog"></i> <b class="caret"></b></a>
+							<div class="dropdown-menu pull-right">
+								<div class="span2">
+									<form action="">
+										<div class="nav-list">
+											<div class="control-group">&nbsp;<!-- placeholder --><!--</div>
+											<div class="control-group">
+												<div class="controls">
+													<a href="#" class="btn neos-button btn-block">Replicate</a>
+												</div>
+											</div>
+											<div class="control-group">
+												<div class="controls">
+													<a href="#" class="btn neos-button btn-block btn-danger">Delete</a>
+												</div>
+											</div>
+											<div class="control-group">
+												<div class="controls">
+													<span class="muted"><strong>List ID:</strong> oaijoag0843</span>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="span2">
+									<ul class="nav nav-list">
+										<li class="nav-header">Subscribers</li>
+										<li><a href="#">Import</a></li>
+										<li><a href="#">Subscribe</a></li>
+										<li><a href="#">Unsubscribe</a></li>
+										<li class="nav-header">Delivery</li>
+										<li><a href="#">Send to list</a></li>
+										<li><a href="#">Email beamer</a></li>
+									</ul>
+								</div>
+								<div class="span2">
+									<ul class="nav nav-list">
+										<li class="nav-header">Forms and fields</li>
+										<li><a href="#">Forms</a></li>
+										<li><a href="#">List data</a></li>
+										<li><a href="#">Combine lists</a></li>
+										<li><a href="#">Integrations</a></li>
+									</ul>
+								</div>
+								<div class="span2">
+									<ul class="nav nav-list">
+										<li class="nav-header">Settings</li>
+										<li><a href="#">List settings</a></li>
+										<li><a href="#">List name and defaults</a></li>
+										<li><a href="#">Help</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><div class="btn-group">
+						<a class="btn neos-button dropdown-toggle" data-toggle="dropdown" href="#">View <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Stats Overview</a></li>
+							<li><a href="#">Subscribers</a></li>
+						</ul></div>
+					</td>
+					<td>My Neos List</td>
+					<td>5 Subscribers</td>
+					<td>no rating yet</td>
+					<td>
+						<div class="btn-group pull-right">
+							<a class="btn neos-button dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-cog"></i> <b class="caret"></b></a>
+							<div class="dropdown-menu pull-right">
+								<div class="span2">
+									<form action="">
+										<div class="nav-list">
+											<div class="control-group">&nbsp;<!-- placeholder --><!--</div>
+											<div class="control-group">
+												<div class="controls">
+													<a href="#" class="btn neos-button btn-block">Replicate</a>
+												</div>
+											</div>
+											<div class="control-group">
+												<div class="controls">
+													<a href="#" class="btn neos-button btn-block btn-danger">Delete</a>
+												</div>
+											</div>
+											<div class="control-group">
+												<div class="controls">
+													<span class="muted"><strong>List ID:</strong> oaijoag0843</span>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="span2">
+									<ul class="nav nav-list">
+										<li class="nav-header">Subscribers</li>
+										<li><a href="#">Import</a></li>
+										<li><a href="#">Subscribe</a></li>
+										<li><a href="#">Unsubscribe</a></li>
+										<li class="nav-header">Delivery</li>
+										<li><a href="#">Send to list</a></li>
+										<li><a href="#">Email beamer</a></li>
+									</ul>
+								</div>
+								<div class="span2">
+									<ul class="nav nav-list">
+										<li class="nav-header">Forms and fields</li>
+										<li><a href="#">Forms</a></li>
+										<li><a href="#">List data</a></li>
+										<li><a href="#">Combine lists</a></li>
+										<li><a href="#">Integrations</a></li>
+									</ul>
+								</div>
+								<div class="span2">
+									<ul class="nav nav-list">
+										<li class="nav-header">Settings</li>
+										<li><a href="#">List settings</a></li>
+										<li><a href="#">List name and defaults</a></li>
+										<li><a href="#">Help</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				-->
+			</tbody>
+		</table>
+	</div>
+	<div class="form-actions form-footer">
+		<div class="pull-right">
+			<f:link.action action="new" class="btn neos-button btn-primary" title="Create new list">
+				<i class="icon-plus-sign icon-white"></i>
+				New list
+			</f:link.action>
+		</div>
+	</div>
+</f:section>

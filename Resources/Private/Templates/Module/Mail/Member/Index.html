@@ -1,0 +1,27 @@
+{namespace neos=TYPO3\Neos\ViewHelpers}
+<f:layout name="BackendSubModule" />
+
+<f:section name="content">
+	<div class="row neos-module-container indented">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Email Address</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Rating</th>
+				</tr>
+			</thead>
+			<tbody>
+				<f:for each="{members}" as="member">
+					<tr>
+						<td>{member.email}</td>
+						<td>{member.firstName}</td>
+						<td>{member.lastName}</td>
+						<td>{member.rating}</td>
+					</tr>
+				</f:for>
+			</tbody>
+		</table>
+	</div>
+</f:section>

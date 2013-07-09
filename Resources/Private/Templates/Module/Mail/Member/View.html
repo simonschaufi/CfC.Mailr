@@ -1,0 +1,72 @@
+{namespace neos=TYPO3\Neos\ViewHelpers}
+{namespace mailr=CfC\Mailr\ViewHelpers}
+<f:layout name="BackendSubModule"/>
+
+<f:section name="subtitle">
+	<div class="row neos-module-container indented">
+		<h2>{member.recipientList.listName}</h2>
+	</div>
+</f:section>
+
+<f:section name="content">
+	<div class="row neos-module-container indented">
+		<div class="row-fluid">
+			<div class="span2">
+				<mailr:gravatar email="{member.email}" default="{f:uri.resource(path: 'Images/default-profile.png')}" size="180" class="member-profile" additionalAttributes="{width: 180}"/>
+				<div>Image source: <a href="http://gravatar.com" target="_blank">Gravatar</a> <span>or social networks</span></div>
+			</div>
+			<div class="span10">
+				<h3>{member.email}</h3>
+				<h5>{member.name}</h5>
+				<p>
+					<strong>Location:</strong> Karlsruhe<br>
+					<strong>Timezone:</strong> GMT+2 <span class="small-meta">(approximated via their <abbr title="Internet Service Provider">ISP</abbr>)</span><br>
+					<strong>Subscribed:</strong> <f:format.date format="d.m.Y - H:i:s">{member.optinTime}</f:format.date> from 127.0.0.1<br>
+					<strong>Profile Updated:</strong> <f:format.date format="d.m.Y - H:i:s">{member.lastUpdateTime}</f:format.date>
+				</p>
+				<div class="inline-rating above-below10" title="Member Rating: 2 Stars">
+					<!--<ul class="star-rating">
+						<li><img src="/images/ratings/star-yellow_16.png"></li>
+						<li><img src="/images/ratings/star-yellow_16.png"></li>
+						<li><img src="/images/ratings/star-grey_16.png"></li>
+						<li><img src="/images/ratings/star-grey_16.png"></li>
+						<li><img src="/images/ratings/star-grey_16.png"></li>
+					</ul>-->
+				</div>
+				<div class="btn-group">
+					<a class="btn neos-button dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-cog"></i> <span class="caret"></span></a>
+					<ul class="dropdown-menu pull-right">
+						<li><a href="#">edit profile</a></li>
+						<li><a href="#">unsubscribe</a></li>
+						<li><a href="#">delete</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<f:form action="editGroups" name="member" object="{member}">
+			<f:form.hidden name="memberUuid" value="{member -> f:format.identifier()}" />
+			<div class="pull-right">
+				<a href="#" onclick="$('#view-group-profile, #edit-group-profile').toggle();return false;" class="btn neos-button btn-primary">Edit</a>
+			</div>
+			<h3>Groups</h3>
+			<div id="view-group-profile">
+				<div class="row-fluid">
+					<div class="span6">Language</div>
+					<div class="span6">English, German</div>
+				</div>
+			</div>
+			<div id="edit-group-profile" style="display: none;">
+				<label class="group-label">Language</label>
+				<f:for each="{groupList}" key="cnt" as="groupItem">
+					<label class="checkbox inline">
+						<f:form.checkbox property="groups" value="{groupItem -> f:format.identifier()}" id="group_{cnt}"/> <label for="group_{cnt}">{groupItem.name}</label>
+					</label>
+				</f:for>
+				<div class="save-cancel-group">
+					<input type="submit" class="btn neos-button btn-primary" value="Save" onclick="this.value='Please wait...'; setTimeout($.proxy(function() {this.disabled=true; $(this).addClass(this, 'disabled');}, this), 0);">
+					<button class="btn neos-button" onclick="$('#view-group-profile, #edit-group-profile').toggle();return false;">Cancel</button>
+				</div>
+			</div>
+		</f:form>
+	</div>
+</f:section>

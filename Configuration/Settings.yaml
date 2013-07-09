@@ -1,0 +1,36 @@
+TYPO3:
+  Neos:
+    modules:
+      mail:
+        label: 'Mail'
+        submodules:
+          campaigns:
+            label: 'Campaigns'
+            controller: '\CfC\Mailr\Controller\Module\Mail\CampaignController'
+            description: 'Design and send emails'
+            icon: 'resource://TYPO3.Neos/Public/Images/Icons/Black/mail_2_icon-24.png'
+            actions:
+              new:
+                label: 'Create campaign'
+                title: 'Create a campaign'
+          lists:
+            label: 'Lists'
+            controller: '\CfC\Mailr\Controller\Module\Mail\RecipientListController'
+            description: 'Create lists, add subscribers, create sign up forms'
+            icon: 'resource://TYPO3.Neos/Public/Images/Icons/Black/list_bullets_icon-24.png'
+            actions:
+              new:
+                label: 'Create list'
+                title: 'Create a list'
+          reports:
+            label: 'Reports'
+            controller: '\CfC\Mailr\Controller\Module\Mail\ReportController'
+            description: 'Track the outcome of your email campaigns'
+            icon: 'resource://TYPO3.Neos/Public/Images/Icons/Black/chart_line_icon-24.png'
+          members:
+            label: 'Members'
+            hideInMenu: TRUE
+            controller: '\CfC\Mailr\Controller\Module\Mail\MemberController'
+  TypoScript:
+    catchRuntimeExceptions: TRUE
+    debugMode: FALSE

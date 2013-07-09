@@ -1,0 +1,242 @@
+{namespace neos=TYPO3\Neos\ViewHelpers}
+<f:layout name="BackendSubModule" />
+
+<f:section name="subtitle">
+	<div class="row neos-module-container indented">
+		<h2>{recipientList.listName}</h2>
+	</div>
+</f:section>
+
+<f:section name="content">
+	<f:form action="batch">
+		<div class="row neos-module-container indented">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="check"><!--<input type="checkbox" id="check-all" />--></th>
+						<th>&nbsp;</th>
+						<th>Email Address</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Member Rating</th>
+						<th>Last Changed</th>
+						<th>Date Added</th>
+						<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<f:for each="{members}" as="member">
+					<tr>
+						<td><f:form.checkbox name="memberKeys[]" value="{member -> f:format.identifier()}" /></td>
+						<td>
+							<neos:link.module path="mail/members" action="view" arguments="{member: member}" class="btn neos-button" title="View">
+								<i class="icon-info-sign icon-white"></i>
+							</neos:link.module>
+						</td>
+						<td>{member.email}</td>
+						<td>{member.firstName}</td>
+						<td>{member.lastName}</td>
+						<td>{member.rating}</td>
+						<td><f:format.date format="d.m.y h:iA">{member.lastUpdateTime}</f:format.date></td>
+						<td><f:format.date format="d.m.y h:iA">{member.optinTime}</f:format.date></td>
+						<td>
+							<div class="pull-right">
+								<button class="btn btn-danger neos-button" title="Click to delete" data-toggle="modal" href="#{member -> f:format.identifier()}">
+									<i class="icon-trash icon-white"></i>
+								</button>
+								<div class="modal hide" id="{member -> f:format.identifier()}">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h3>Are you sure you want to delete user "{member.rating}"?</h3>
+										<p>This will delete the user and his personal workspace, including all unpublished content.
+											This operation cannot be undone.</p>
+									</div>
+									<div class="modal-footer">
+										<a href="#" class="btn neos-button" data-dismiss="modal">Cancel</a>
+										<f:link.action action="delete" arguments="{member: member}" class="btn btn-danger neos-button" title="Delete">
+											<i class="icon-trash icon-white"></i>
+											Delete
+										</f:link.action>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</f:for>
+			</table>
+		</div>
+		<div class="form-actions form-footer">
+			<div class="pull-left">
+				<div class="btn-toolbar">
+					<div class="btn-group">
+						<a class="btn neos-button dropdown-toggle" data-toggle="dropdown" href="#">
+							Bulk Actions
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Unsubscribe</a></li>
+							<li><a href="#">Delete</a></li>
+							<li class="dropdown-submenu">
+								<a href="#">Move to List</a>
+								<ul class="dropdown-menu">
+									<li><a href="#">List 1</a></li>
+								</ul>
+							</li>
+							<li class="dropdown-submenu">
+								<a href="#">Copy to List</a>
+								<ul class="dropdown-menu">
+									<li><a href="#">List 1</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<div class="btn-group">
+						<a href="#" class="btn neos-button" id="bulk-action-selectall" onclick="bulkSelectAll(); return false;" title="select all subscribers visible on this page">select visible</a>
+						<a href="#" class="btn neos-button" id="select-all-link" onclick="bulkSelectAll(true); return false;" title="select all subscribers in all pages of this list or segment">select all</a>
+						<a href="#" class="btn neos-button" id="deselect-all-link" style="display:none;" onclick="bulkSelectAll(); return false;">deselect all</a>
+					</div>
+				</div>
+			</div>
+			<div class="pull-right">
+				<button class="btn btn-danger neos-button batch-action disabled" data-toggle="modal" href="#delete" disabled="disabled">
+					<i class="icon-trash icon-white"></i>
+					Delete <strong>selected</strong> members
+				</button>
+			</div>
+		</div>
+		<div class="modal hide" id="delete">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h3>Are you sure you want to delete the selected members?</h3>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn neos-button" data-dismiss="modal">Cancel</a>
+				<button type="submit" name="moduleArguments[action]" value="delete" class="btn btn-danger neos-button">
+					<i class="icon-trash icon-white"></i>
+					Delete
+				</button>
+			</div>
+		</div>
+	</f:form>
+	<script type="text/javascript">
+		var checked_eids = [];
+		var screen_all = false;
+
+		function refreshChecks(view) {
+			if(view == 'active') {
+				$('input.bulk-select').each(function(check) {
+					if(checked_eids == 'all' || dojo.indexOf(checked_eids, parseInt(check.value)) != -1) {
+						check.checked = true;
+					} else {
+						check.checked = false;
+					}
+
+					$(check).click(function(e) {
+						if(checked_eids == 'all') {
+							//Unchecking a box when "all" were selected should change the selection to the current page minus the unchecked box
+							checked_eids = [];
+							var self = this;
+							$('input.bulk-select').each(function(check) {
+								if(check.value != self.value) {
+									console.log(check.value + ' != ' + self.value);
+									checked_eids.push(parseInt(check.value));
+								}
+							});
+						} else if(this.checked) {
+							checked_eids.push(parseInt(this.value));
+						} else {
+							$('#select-all-link', 'display','inline');
+							$('#deselect-all-link', 'display','none');
+							var found = dojo.indexOf(checked_eids, parseInt(this.value));
+							if(found != -1) {
+								var new_eids = [];
+								for(var i=0; checked_eids.length > i; i++) {
+									if(i != found) new_eids.push(checked_eids[i]);
+								}
+								checked_eids = new_eids;
+							}
+						}
+					});
+				});
+			} else {
+				checked_eids = [];
+			}
+		}
+
+		function bulkSelectAll(allall) {
+			if(allall) {
+				checked_eids = 'all';
+				screen_all = false;
+				$('#select-all-link', 'display','none');
+				$('#deselect-all-link', 'display','inline');
+			} else if(checked_eids == 'all' || screen_all) {
+				//Previously all was selected, so revert
+				checked_eids = [];
+				screen_all = false;
+				$('#select-all-link', 'display','inline');
+				$('#deselect-all-link', 'display','none');
+			} else {
+				$('input.bulk-select').each(function(el) {
+					/*if(dojo.indexOf(checked_eids, parseInt(el.value)) == -1) {
+						checked_eids.push(parseInt(el.value));
+					}*/
+				});
+				screen_all = true;
+			}
+			refreshChecks('active');
+		}
+
+		(function($) {
+			$('#select-visible').click(function() {
+				$('tbody input[type="checkbox"]').attr('checked', true);
+				return false;
+			});
+			$('#check-all').change(function() {
+				var value = false;
+				if ($(this).is(':checked')) {
+					value = true;
+					$('.batch-action').removeClass('disabled').removeAttr('disabled')
+				} else {
+					$('.batch-action').addClass('disabled').attr('disabled', 'disabled');
+				}
+				$('tbody input[type="checkbox"]').attr('checked', value);
+			});
+			$('tbody input[type="checkbox"]').change(function() {
+				if ($('tbody input[type="checkbox"]:checked').length > 0) {
+					$('.batch-action').removeClass('disabled').removeAttr('disabled')
+				} else {
+					$('.batch-action').addClass('disabled').attr('disabled', 'disabled');
+				}
+			});
+		})(jQuery);
+	</script>
+
+	<f:form action="addMember" name="recipientList">
+		<f:form.hidden name="recipientList" value="{recipientList -> f:format.identifier()}" />
+		<div class="row neos-module-container">
+			<fieldset class="span5">
+				<legend>Add member</legend>
+				<div class="control-group">
+					<label class="control-label" for="email">Email <span class="text-error">*</span></label>
+					<div class="controls">
+						<f:form.textfield name="email" id="email" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="firstName">First Name <span class="text-error">*</span></label>
+					<div class="controls">
+						<f:form.textfield name="firstName" id="firstName" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="lastName">Last Name <span class="text-error">*</span></label>
+					<div class="controls">
+						<f:form.textfield name="lastName" id="lastName" />
+					</div>
+				</div>
+				<div class="pull-right">
+					<f:form.submit value="Save" class="btn btn-primary neos-button" />
+				</div>
+			</fieldset>
+		</div>
+	</f:form>
+</f:section>
