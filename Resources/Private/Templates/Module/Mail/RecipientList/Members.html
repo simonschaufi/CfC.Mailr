@@ -2,15 +2,15 @@
 <f:layout name="BackendSubModule" />
 
 <f:section name="subtitle">
-	<div class="row neos-module-container indented">
+	<div class="neos-row neos-module-container neos-indented">
 		<h2>{recipientList.listName}</h2>
 	</div>
 </f:section>
 
 <f:section name="content">
 	<f:form action="batch">
-		<div class="row neos-module-container indented">
-			<table class="table">
+		<div class="neos-row neos-module-container neos-indented">
+			<table class="neos-table">
 				<thead>
 					<tr>
 						<th class="check"><!--<input type="checkbox" id="check-all" />--></th>
@@ -26,9 +26,9 @@
 				</thead>
 				<f:for each="{members}" as="member">
 					<tr>
-						<td><f:form.checkbox name="memberKeys[]" value="{member -> f:format.identifier()}" /></td>
+						<td class="check"><f:form.checkbox name="memberKeys[]" value="{member -> f:format.identifier()}" /></td>
 						<td>
-							<neos:link.module path="mail/members" action="view" arguments="{member: member}" class="btn neos-button" title="View">
+							<neos:link.module path="mail/members" action="view" arguments="{member: member}" class="neos-button" title="View">
 								<i class="icon-info-sign icon-white"></i>
 							</neos:link.module>
 						</td>
@@ -39,24 +39,24 @@
 						<td><f:format.date format="d.m.y h:iA">{member.lastUpdateTime}</f:format.date></td>
 						<td><f:format.date format="d.m.y h:iA">{member.optinTime}</f:format.date></td>
 						<td>
-							<div class="pull-right">
-								<button class="btn btn-danger neos-button" title="Click to delete" data-toggle="modal" href="#{member -> f:format.identifier()}">
+							<div class="neos-pull-right">
+								<button class="neos-button neos-button-danger" title="Click to delete {member.firstName} {member.lastName}." data-toggle="modal" href="#{member -> f:format.identifier()}">
 									<i class="icon-trash icon-white"></i>
 								</button>
-								<div class="modal hide" id="{member -> f:format.identifier()}">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h3>Are you sure you want to delete user "{member.rating}"?</h3>
-										<p>This will delete the user and his personal workspace, including all unpublished content.
-											This operation cannot be undone.</p>
+								<div class="neos-hide" id="{member -> f:format.identifier()}">
+									<div class="neos-modal">
+										<div class="neos-modal-header">
+											<button type="button" class="neos-close neos-button" data-dismiss="modal"></button>
+											<div class="neos-header">Are you sure you want to delete user "{member.firstName} {member.lastName}"?</div>
+										</div>
+										<div class="neos-modal-footer">
+											<a href="#" class="neos-button" data-dismiss="modal">Cancel</a>
+											<f:link.action action="delete" class="neos-button neos-button-danger" arguments="{member: member}" title="Delete">
+												Yes, delete the user
+											</f:link.action>
+										</div>
 									</div>
-									<div class="modal-footer">
-										<a href="#" class="btn neos-button" data-dismiss="modal">Cancel</a>
-										<f:link.action action="delete" arguments="{member: member}" class="btn btn-danger neos-button" title="Delete">
-											<i class="icon-trash icon-white"></i>
-											Delete
-										</f:link.action>
-									</div>
+									<div class="neos-modal-backdrop neos-in"></div>
 								</div>
 							</div>
 						</td>
@@ -64,57 +64,61 @@
 				</f:for>
 			</table>
 		</div>
-		<div class="form-actions form-footer">
-			<div class="pull-left">
-				<div class="btn-toolbar">
-					<div class="btn-group">
-						<a class="btn neos-button dropdown-toggle" data-toggle="dropdown" href="#">
-							Bulk Actions
-							<span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Unsubscribe</a></li>
-							<li><a href="#">Delete</a></li>
-							<li class="dropdown-submenu">
-								<a href="#">Move to List</a>
-								<ul class="dropdown-menu">
-									<li><a href="#">List 1</a></li>
-								</ul>
-							</li>
-							<li class="dropdown-submenu">
-								<a href="#">Copy to List</a>
-								<ul class="dropdown-menu">
-									<li><a href="#">List 1</a></li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-					<div class="btn-group">
-						<a href="#" class="btn neos-button" id="bulk-action-selectall" onclick="bulkSelectAll(); return false;" title="select all subscribers visible on this page">select visible</a>
-						<a href="#" class="btn neos-button" id="select-all-link" onclick="bulkSelectAll(true); return false;" title="select all subscribers in all pages of this list or segment">select all</a>
-						<a href="#" class="btn neos-button" id="deselect-all-link" style="display:none;" onclick="bulkSelectAll(); return false;">deselect all</a>
-					</div>
+		<div class="neos-form-actions neos-form-footer">
+			<div class="neos-pull-left">
+				<div class="neos-button-group">
+					<a class="btn neos-button neos-dropdown-toggle" data-toggle="dropdown" href="#">
+						Bulk Actions
+						<span class="caret"></span>
+					</a>
+					<ul class="neos-dropdown-menu">
+						<li><a href="#">Unsubscribe</a></li>
+						<li><a href="#">Delete</a></li>
+						<li class="neos-dropdown-submenu">
+							<a href="#">Move to List</a>
+							<ul class="neos-dropdown-menu">
+								<li><a href="#">List 1</a></li>
+							</ul>
+						</li>
+						<li class="neos-dropdown-submenu">
+							<a href="#">Copy to List</a>
+							<ul class="neos-dropdown-menu">
+								<li><a href="#">List 1</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="neos-button-group">
+					<a href="#" class="neos-button" id="bulk-action-selectall" onclick="bulkSelectAll(); return false;" title="select all subscribers visible on this page">select visible</a>
+					<a href="#" class="neos-button" id="select-all-link" onclick="bulkSelectAll(true); return false;" title="select all subscribers in all pages of this list or segment">select all</a>
+					<a href="#" class="neos-button" id="deselect-all-link" style="display:none;" onclick="bulkSelectAll(); return false;">deselect all</a>
 				</div>
 			</div>
-			<div class="pull-right">
-				<button class="btn btn-danger neos-button batch-action disabled" data-toggle="modal" href="#delete" disabled="disabled">
+			<div class="neos-pull-right">
+				<button class="neos-button-danger neos-button neos-batch-action neos-disabled" data-toggle="neos-modal" href="#delete" disabled="disabled">
 					<i class="icon-trash icon-white"></i>
 					Delete <strong>selected</strong> members
 				</button>
 			</div>
 		</div>
-		<div class="modal hide" id="delete">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h3>Are you sure you want to delete the selected members?</h3>
+		<div class="neos-hide" id="delete">
+			<div class="neos-modal">
+				<div class="neos-modal-header">
+					<button type="button" class="neos-close" data-dismiss="modal"></button>
+					<div class="neos-header">Are you sure you want to delete the selected members?</div>
+					<div class="neos-subheader">
+						This will delete the user and his personal workspace, including all unpublished content.
+						This operation cannot be undone.
+					</div>
+				</div>
+				<div class="neos-modal-footer">
+					<a href="#" class="neos-button" data-dismiss="modal">Cancel</a>
+					<button type="submit" name="moduleArguments[action]" value="delete" class="neos-button neos-button-danger">
+						Yes, delete them
+					</button>
+				</div>
 			</div>
-			<div class="modal-footer">
-				<a href="#" class="btn neos-button" data-dismiss="modal">Cancel</a>
-				<button type="submit" name="moduleArguments[action]" value="delete" class="btn btn-danger neos-button">
-					<i class="icon-trash icon-white"></i>
-					Delete
-				</button>
-			</div>
+			<div class="neos-modal-backdrop neos-in"></div>
 		</div>
 	</f:form>
 	<script type="text/javascript">
@@ -212,29 +216,29 @@
 
 	<f:form action="addMember" name="recipientList">
 		<f:form.hidden name="recipientList" value="{recipientList -> f:format.identifier()}" />
-		<div class="row neos-module-container">
-			<fieldset class="span5">
+		<div class="neos-row neos-module-container">
+			<fieldset class="neos-span5">
 				<legend>Add member</legend>
-				<div class="control-group">
-					<label class="control-label" for="email">Email <span class="text-error">*</span></label>
-					<div class="controls">
+				<div class="neos-control-group">
+					<label class="neos-control-label" for="email">Email <span class="text-error">*</span></label>
+					<div class="neos-controls">
 						<f:form.textfield name="email" id="email" />
 					</div>
 				</div>
-				<div class="control-group">
-					<label class="control-label" for="firstName">First Name <span class="text-error">*</span></label>
-					<div class="controls">
+				<div class="neos-control-group">
+					<label class="neos-control-label" for="firstName">First Name <span class="text-error">*</span></label>
+					<div class="neos-controls">
 						<f:form.textfield name="firstName" id="firstName" />
 					</div>
 				</div>
-				<div class="control-group">
-					<label class="control-label" for="lastName">Last Name <span class="text-error">*</span></label>
-					<div class="controls">
+				<div class="neos-control-group">
+					<label class="neos-control-label" for="lastName">Last Name <span class="text-error">*</span></label>
+					<div class="neos-controls">
 						<f:form.textfield name="lastName" id="lastName" />
 					</div>
 				</div>
-				<div class="pull-right">
-					<f:form.submit value="Save" class="btn btn-primary neos-button" />
+				<div class="neos-pull-right">
+					<f:form.submit value="Save" class="neos-button neos-button-primary" />
 				</div>
 			</fieldset>
 		</div>

@@ -13,17 +13,13 @@ use TYPO3\Flow\Annotations as Flow;
  *
  * @Flow\Scope("singleton")
  */
-class ReportController extends \TYPO3\Neos\Controller\Module\StandardController {
+class ReportController extends \TYPO3\Neos\Controller\Module\AbstractModuleController {
 
 	/**
 	 * @return void
 	 */
 	public function indexAction() {
-		$this->view->assign('foos', array(
-			'bar', 'baz'
-		));
+
 	}
 
 }
-
-?>

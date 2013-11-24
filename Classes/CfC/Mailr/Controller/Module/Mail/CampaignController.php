@@ -7,19 +7,20 @@ namespace CfC\Mailr\Controller\Module\Mail;
  *                                                                        */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Neos\Domain\Service\ContentContext;
 
 /**
  * The Campaign module controller
  *
  * @Flow\Scope("singleton")
  */
-class CampaignController extends \TYPO3\Neos\Controller\Module\StandardController {
+class CampaignController extends \TYPO3\Neos\Controller\Module\AbstractModuleController {
 
 	/**
 	 * @return void
 	 */
 	public function indexAction() {
-		$this->view->assign('foos', array(
+		$this->view->assign('foo', array(
 			'bar', 'baz'
 		));
 	}
@@ -28,7 +29,7 @@ class CampaignController extends \TYPO3\Neos\Controller\Module\StandardControlle
 	 * @return void
 	 */
 	public function newAction() {
-		$path = '/sites/neosdemotypo3org/features';
+		$path = '/sites/neosdemotypo3org/features/imagetext';
 		$nodeConverter = new \TYPO3\Neos\TypeConverter\NodeConverter();
 		$propertyMapperConfiguration = new \TYPO3\Flow\Property\PropertyMappingConfiguration();
 		$node = $nodeConverter->convertFrom($path, NULL, array(), $propertyMapperConfiguration);
@@ -45,7 +46,4 @@ class CampaignController extends \TYPO3\Neos\Controller\Module\StandardControlle
 		echo $output;
 		exit;
 	}
-
 }
-
-?>

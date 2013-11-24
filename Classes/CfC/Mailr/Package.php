@@ -18,6 +18,4 @@ class Package extends BasePackage {
 	public function boot(\TYPO3\Flow\Core\Bootstrap $bootstrap) {
 		$bootstrap->registerRequestHandler(new \CfC\Mailr\MyRequestHandler($bootstrap));
 	}
-
 }
-?>

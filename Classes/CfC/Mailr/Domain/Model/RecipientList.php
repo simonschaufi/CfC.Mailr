@@ -273,6 +273,20 @@ class RecipientList {
 	}
 
 	/**
+	 * @param \DateTime $created
+	 */
+	public function setCreated($created) {
+		$this->created = $created;
+	}
+
+	/**
+	 * @return \DateTime
+	 */
+	public function getCreated() {
+		return $this->created;
+	}
+
+	/**
 	 * @param \Doctrine\Common\Collections\Collection $members
 	 */
 	public function setMembers($members) {

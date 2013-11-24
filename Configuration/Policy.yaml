@@ -1,0 +1,25 @@
+#                                                                        #
+# Security policy for the CfC Mailr package                              #
+#                                                                        #
+
+resources:
+  methods:
+    CfC_Mailr_Backend_Module_Mail: 'method(CfC\Mailr\Controller\Module\MailController->.*Action())'
+    CfC_Mailr_Backend_Module_Mail_RecipientList: 'method(CfC\Mailr\Controller\Module\Mail\RecipientListController->.*Action()) || method(CfC\Mailr\Controller\Module\Mail\MemberController->.*Action())'
+    CfC_Mailr_Backend_Module_Campaigns: 'method(CfC\Mailr\Controller\Module\Mail\CampaignController->.*Action())'
+    CfC_Mailr_Backend_Module_Reports: 'method(CfC\Mailr\Controller\Module\Mail\ReportController->.*Action())'
+
+acls:
+  'TYPO3.Neos:Editor':
+    methods:
+      CfC_Mailr_Backend_Module_Mail: GRANT
+      CfC_Mailr_Backend_Module_Mail_RecipientList: GRANT
+      CfC_Mailr_Backend_Module_Campaigns: GRANT
+      CfC_Mailr_Backend_Module_Reports: GRANT
+
+  'TYPO3.Neos:Administrator':
+    methods:
+      CfC_Mailr_Backend_Module_Mail: GRANT
+      CfC_Mailr_Backend_Module_Mail_RecipientList: GRANT
+      CfC_Mailr_Backend_Module_Campaigns: GRANT
+      CfC_Mailr_Backend_Module_Reports: GRANT

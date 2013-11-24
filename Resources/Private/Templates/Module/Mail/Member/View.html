@@ -3,19 +3,19 @@
 <f:layout name="BackendSubModule"/>
 
 <f:section name="subtitle">
-	<div class="row neos-module-container indented">
+	<div class="neos-row neos-module-container indented">
 		<h2>{member.recipientList.listName}</h2>
 	</div>
 </f:section>
 
 <f:section name="content">
-	<div class="row neos-module-container indented">
-		<div class="row-fluid">
-			<div class="span2">
+	<div class="neos-row neos-module-container indented">
+		<div class="neos-row-fluid">
+			<div class="neos-span2">
 				<mailr:gravatar email="{member.email}" default="{f:uri.resource(path: 'Images/default-profile.png')}" size="180" class="member-profile" additionalAttributes="{width: 180}"/>
 				<div>Image source: <a href="http://gravatar.com" target="_blank">Gravatar</a> <span>or social networks</span></div>
 			</div>
-			<div class="span10">
+			<div class="neos-span10">
 				<h3>{member.email}</h3>
 				<h5>{member.name}</h5>
 				<p>
@@ -33,9 +33,9 @@
 						<li><img src="/images/ratings/star-grey_16.png"></li>
 					</ul>-->
 				</div>
-				<div class="btn-group">
-					<a class="btn neos-button dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-cog"></i> <span class="caret"></span></a>
-					<ul class="dropdown-menu pull-right">
+				<div class="neos-button-group">
+					<a class="neos-button neos-dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-cog"></i> <span class="caret"></span></a>
+					<ul class="neos-dropdown-menu neos-pull-right">
 						<li><a href="#">edit profile</a></li>
 						<li><a href="#">unsubscribe</a></li>
 						<li><a href="#">delete</a></li>
@@ -45,26 +45,127 @@
 		</div>
 		<f:form action="editGroups" name="member" object="{member}">
 			<f:form.hidden name="memberUuid" value="{member -> f:format.identifier()}" />
-			<div class="pull-right">
-				<a href="#" onclick="$('#view-group-profile, #edit-group-profile').toggle();return false;" class="btn neos-button btn-primary">Edit</a>
+			<div class="neos-pull-right">
+				<a href="#" onclick="$('#view-group-profile, #edit-group-profile').toggle();return false;" class="neos-button">Edit</a>
 			</div>
 			<h3>Groups</h3>
 			<div id="view-group-profile">
-				<div class="row-fluid">
-					<div class="span6">Language</div>
-					<div class="span6">English, German</div>
+				<div class="neos-row-fluid">
+					<div class="neos-span6">Language</div>
+					<div class="neos-span6">English, German</div>
 				</div>
 			</div>
 			<div id="edit-group-profile" style="display: none;">
-				<label class="group-label">Language</label>
+				<label class="neos-group-label">Language</label>
 				<f:for each="{groupList}" key="cnt" as="groupItem">
-					<label class="checkbox inline">
+					<label class="neos-checkbox neos-inline">
 						<f:form.checkbox property="groups" value="{groupItem -> f:format.identifier()}" id="group_{cnt}"/> <label for="group_{cnt}">{groupItem.name}</label>
 					</label>
 				</f:for>
 				<div class="save-cancel-group">
-					<input type="submit" class="btn neos-button btn-primary" value="Save" onclick="this.value='Please wait...'; setTimeout($.proxy(function() {this.disabled=true; $(this).addClass(this, 'disabled');}, this), 0);">
-					<button class="btn neos-button" onclick="$('#view-group-profile, #edit-group-profile').toggle();return false;">Cancel</button>
+					<input type="submit" class="neos-button neos-button-primary" value="Save" onclick="this.value='Please wait...'; setTimeout($.proxy(function() {this.disabled=true; $(this).addClass(this, 'disabled');}, this), 0);">
+					<button class="neos-button" onclick="$('#view-group-profile, #edit-group-profile').toggle();return false;">Cancel</button>
+				</div>
+			</div>
+		</f:form>
+
+		<div>
+			<div class="neos-pull-right">
+				<a href="#" onclick="return false;" class="">Filter Activity</a>
+			</div>
+			<h3>Activity</h3>
+		</div>
+		<div id="activity-filter">
+			<form class="neos-form-inline">
+				Show
+				<select name="filters">
+					<option value="">All Activity</option>
+					<option value="sent">Campaign Sends</option>
+					<option value="opens">Opens</option>
+					<option value="clicks">Clicks</option>
+					<option value="bounces">Bounces</option>
+					<option value="unsubs">Unsubscribes</option>
+					<option value="abuse">Abuse Complaints</option>
+				</select>
+				from
+				<input type="date" name="activity-filter-from">
+				to
+				<input type="date" name="activity-filter-to">
+				<a class="neos-button" onclick="return false;">Refresh</a>
+			</form>
+		</div>
+		<div class="neos-row-fluid">
+			<div class="neos-span4"><span class="stat" id="stat-sends">17</span><br>Campaigns&nbsp;Sent</div>
+			<div class="neos-span4"><span class="stat" id="stat-open-rate">105.9%</span><br>Open&nbsp;Rate</div>
+			<div class="neos-span4"><span class="stat" id="stat-click-rate">23.5%</span><br>Click&nbsp;Rate</div>
+		</div>
+		<ul>
+			<li>
+				<div class="neos-span2"><i class="icon-envelope"></i></div>
+				<div class="neos-span10">
+					<h4>Opened <a href="/reports/summary?id=1710317">MNewsletter 2013#2 en_pdf</a></h4>
+					<div><a href="/reports/activity/opened?id=1710317">View Results</a> • Jun 03, 2013 06:08 pm</div>
+				</div>
+			</li>
+			<li>
+				<div class="neos-span2"><i class="icon-envelope"></i></div>
+				<div class="neos-span10">
+					<h4>Opened <a href="/reports/summary?id=1710317">MNewsletter 2013#2 en_pdf</a></h4>
+					<div><a href="/reports/activity/opened?id=1710317">View Results</a> • Jun 03, 2013 06:08 pm</div>
+				</div>
+			</li>
+			<li>
+				<button class="neos-button neos-button-large" onclick="mojo.listmembers.showActivity('/lists/members/activity', '226139317', 25, 25); return true;">View More</button>
+			</li>
+		</ul>
+
+		<h3>Favorite Email Clients</h3>
+		<ul><li><img src="/images/email-client-icons/thunderbird.png"> Thunderbird</li></ul>
+
+		<f:form action="edit" name="member" object="{member}" id="edit-member-form">
+			<f:form.hidden name="memberUuid" value="{member -> f:format.identifier()}" />
+			<div id="view-profile" style="display: block;">
+				<div class="neos-pull-right">
+					<a href="#" onclick="$('#view-profile, #edit-profile').toggle();return false;" class="neos-button">Edit</a>
+				</div>
+				<h3>Groups</h3>
+				<div class="neos-row-fluid">
+					<div class="neos-span6">Email Address <span class="asterisk">*</span></div>
+					<div class="neos-span6">simonschaufi@aol.com</div>
+				</div>
+				<div class="neos-row-fluid">
+					<div class="neos-span6">First Name <span class="asterisk">*</span></div>
+					<div class="neos-span6">Simon</div>
+				</div>
+				<div class="neos-row-fluid">
+					<div class="neos-span6">Last  Name <span class="asterisk">*</span></div>
+					<div class="neos-span6">Schaufelberger</div>
+				</div>
+				<div class="neos-row-fluid">
+					<div class="neos-span6">Birthday <span class="asterisk">*</span></div>
+					<div class="neos-span6">Schaufelberger</div>
+				</div>
+			</div>
+			<div id="edit-profile" style="display: none;">
+				<h3>Edit Subscriber Profile</h3>
+				<label for="merge0">Email Address <span class="asterisk">*</span></label>
+				<input type="email" autocapitalize="off" autocorrect="off" name="merge0" id="merge0" size="25" value="simonschaufi@aol.com">
+
+				<label for="merge1"><strong>First Name</strong> <span class="asterisk">*</span></label>
+				<input type="text" name="MERGE1" id="merge1" size="25" value="Simon">
+
+				<label for="merge2"><strong>Last Name</strong> <span class="asterisk">*</span></label>
+				<input type="text" name="merge2" id="merge2" size="25" value="Schaufelberger">
+
+				<label for="merge5"><strong>Birthday</strong> <span class="asterisk">*</span></label>
+				<div class="datefield" id="merge5">
+					<span class="subfield dayfield"><label for="MERGE5-day">Day</label><input type="text" pattern="[0-9]*" id="MERGE5-day" name="MERGE5[day]" maxlength="2" size="2" value="" style="width:50px"></span>
+					<span class="subfield monthfield"><label for="MERGE5-month">Month</label><input type="text" pattern="[0-9]*" id="MERGE5-month" name="MERGE5[month]" maxlength="2" size="2" value="" style="width:50px"></span>
+					<span class="small-meta">( dd / mm )</span>
+				</div>
+				<div class="save-cancel-group">
+					<input type="submit" class="neos-button neos-button-primary" value="Save" onclick="this.value='Please wait...'; setTimeout($.proxy(function() {this.disabled=true; $(this).addClass(this, 'disabled');}, this), 0);">
+					<button class="neos-button" onclick="$('#edit-profile, #view-profile').toggle();return false;">Cancel</button>
 				</div>
 			</div>
 		</f:form>

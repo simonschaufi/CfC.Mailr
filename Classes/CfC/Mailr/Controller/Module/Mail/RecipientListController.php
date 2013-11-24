@@ -13,7 +13,7 @@ use TYPO3\Flow\Annotations as Flow;
  *
  * @Flow\Scope("singleton")
  */
-class RecipientListController extends \TYPO3\Neos\Controller\Module\StandardController {
+class RecipientListController extends \TYPO3\Neos\Controller\Module\AbstractModuleController {
 
 	/**
 	 * @Flow\Inject
@@ -41,12 +41,16 @@ class RecipientListController extends \TYPO3\Neos\Controller\Module\StandardCont
 	 */
 	public function newAction(\CfC\Mailr\Domain\Model\RecipientList $recipientList = NULL) {
 		$this->view->assign('recipientList', $recipientList);
+		$this->setTitle($this->moduleConfiguration['label'] . ' :: ' . ucfirst($this->request->getControllerActionName()));
 	}
 
 	/**
 	 * @param \CfC\Mailr\Domain\Model\RecipientList $recipientList
 	 */
 	public function createAction(\CfC\Mailr\Domain\Model\RecipientList $recipientList) {
+		$recipientList->setRating(0);
+		$recipientList->setCreated(new \DateTime());
+
 		$this->recipientListRepository->add($recipientList);
 		$this->addFlashMessage('The recipient list has been created.');
 		$this->redirect('index');
@@ -86,9 +90,6 @@ class RecipientListController extends \TYPO3\Neos\Controller\Module\StandardCont
 		$member->setEmail($email);
 		$member->setFirstName($firstName);
 		$member->setLastName($lastName);
-		$member->setRating(0);
-		$member->setDateAdded(new \DateTime());
-		$member->setLastChanged(new \DateTime());
 		$member->setRecipientList($recipientList);
 
 		$this->memberRepository->add($member);
@@ -103,10 +104,9 @@ class RecipientListController extends \TYPO3\Neos\Controller\Module\StandardCont
 	 */
 	public function deleteAction(\CfC\Mailr\Domain\Model\RecipientList $recipientList) {
 		$this->recipientListRepository->remove($recipientList);
+		$this->persistenceManager->persistAll();
 		$this->addFlashMessage('The recipient list has been deleted.');
 		$this->redirect('index');
 	}
 
 }
-
-?>

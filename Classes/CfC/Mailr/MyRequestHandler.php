@@ -34,7 +34,4 @@ class MyRequestHandler implements \TYPO3\Flow\Core\RequestHandlerInterface {
 	public function getPriority() {
 		return 150;
 	}
-
 }
-
-?>

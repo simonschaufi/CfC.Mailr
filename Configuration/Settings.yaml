@@ -1,14 +1,23 @@
+CfC:
+  Mailr:
+    moduleConfiguration:
+      widgetTemplatePathAndFileName: 'resource://CfC.Mailr/Private/Templates/Module/Widget.html'
 TYPO3:
   Neos:
     modules:
       mail:
         label: 'Mail'
+        controller: '\CfC\Mailr\Controller\Module\MailController'
+        description: 'Contains multiple modules related to mail'
+        icon: 'icon-envelope'
+        resource: 'CfC_Mailr_Backend_Module_Mail'
         submodules:
           campaigns:
             label: 'Campaigns'
             controller: '\CfC\Mailr\Controller\Module\Mail\CampaignController'
             description: 'Design and send emails'
-            icon: 'resource://TYPO3.Neos/Public/Images/Icons/Black/mail_2_icon-24.png'
+            icon: 'icon-envelope-alt'
+            resource: 'CfC_Mailr_Backend_Module_Campaigns'
             actions:
               new:
                 label: 'Create campaign'
@@ -17,7 +26,8 @@ TYPO3:
             label: 'Lists'
             controller: '\CfC\Mailr\Controller\Module\Mail\RecipientListController'
             description: 'Create lists, add subscribers, create sign up forms'
-            icon: 'resource://TYPO3.Neos/Public/Images/Icons/Black/list_bullets_icon-24.png'
+            icon: 'icon-list-ul'
+            resource: 'CfC_Mailr_Backend_Module_Mail_RecipientList'
             actions:
               new:
                 label: 'Create list'
@@ -26,11 +36,13 @@ TYPO3:
             label: 'Reports'
             controller: '\CfC\Mailr\Controller\Module\Mail\ReportController'
             description: 'Track the outcome of your email campaigns'
-            icon: 'resource://TYPO3.Neos/Public/Images/Icons/Black/chart_line_icon-24.png'
+            icon: 'icon-bar-chart'
+            resource: 'CfC_Mailr_Backend_Module_Reports'
           members:
             label: 'Members'
             hideInMenu: TRUE
             controller: '\CfC\Mailr\Controller\Module\Mail\MemberController'
+            resource: 'CfC_Mailr_Backend_Module_Mail_RecipientList'
   TypoScript:
     catchRuntimeExceptions: TRUE
     debugMode: FALSE

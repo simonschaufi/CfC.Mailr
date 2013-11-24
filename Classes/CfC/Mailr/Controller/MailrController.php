@@ -18,7 +18,4 @@ class MailrController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 			'bar', 'baz'
 		));
 	}
-
 }
-
-?>

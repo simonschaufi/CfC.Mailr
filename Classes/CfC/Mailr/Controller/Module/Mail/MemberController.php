@@ -13,7 +13,7 @@ use TYPO3\Flow\Annotations as Flow;
  *
  * @Flow\Scope("singleton")
  */
-class MemberController extends \TYPO3\Neos\Controller\Module\StandardController {
+class MemberController extends \TYPO3\Neos\Controller\Module\AbstractModuleController {
 
 	/**
 	 * @Flow\Inject
@@ -51,6 +51,7 @@ class MemberController extends \TYPO3\Neos\Controller\Module\StandardController 
 
 	/**
 	 * @param \CfC\Mailr\Domain\Model\Member $member
+	 * @return string
 	 */
 	public function showAction(\CfC\Mailr\Domain\Model\Member $member) {
 		return 'rating: '.$member->getRating();
@@ -73,4 +74,3 @@ class MemberController extends \TYPO3\Neos\Controller\Module\StandardController 
 
 	}
 }
-?>

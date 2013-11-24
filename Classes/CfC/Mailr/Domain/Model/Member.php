@@ -56,16 +56,19 @@ class Member extends \TYPO3\Party\Domain\Model\AbstractParty {
 
 	/**
 	 * @var \DateTime
+	 * @ORM\Column(nullable=true)
 	 */
 	protected $unsubTime;
 
 	/**
 	 * @var string
+	 * @ORM\Column(nullable=true)
 	 */
 	protected $unsubReason;
 
 	/**
 	 * @var string
+	 * @ORM\Column(nullable=true)
 	 */
 	protected $unsubReasonText;
 
@@ -77,6 +80,7 @@ class Member extends \TYPO3\Party\Domain\Model\AbstractParty {
 
 	/**
 	 * @var \DateTime
+	 * @ORM\Column(nullable=true)
 	 */
 	protected $bounceTime;
 
@@ -100,6 +104,19 @@ class Member extends \TYPO3\Party\Domain\Model\AbstractParty {
 	 * @ORM\ManyToMany(inversedBy="members")
 	 */
 	protected $groups;
+
+
+	/**
+	 * Constructs a new Member
+	 */
+	public function __construct() {
+		$this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->rating = 0;
+		$this->optinTime = new \DateTime();
+		$this->lastUpdateTime = new \DateTime();
+		$this->language = '';
+		$this->active = 1;
+	}
 
 	/**
 	 * @param string $email
