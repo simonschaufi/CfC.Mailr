@@ -300,4 +300,3 @@ class RecipientList {
 		return $this->members;
 	}
 }
-?>

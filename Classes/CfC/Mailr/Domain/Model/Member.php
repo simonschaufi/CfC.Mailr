@@ -369,6 +369,4 @@ class Member extends \TYPO3\Party\Domain\Model\AbstractParty {
 		}
 		return $groups;
 	}
-
 }
-?>

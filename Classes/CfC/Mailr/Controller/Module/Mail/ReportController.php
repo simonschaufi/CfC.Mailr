@@ -19,7 +19,5 @@ class ReportController extends \TYPO3\Neos\Controller\Module\AbstractModuleContr
 	 * @return void
 	 */
 	public function indexAction() {
-
 	}
-
 }

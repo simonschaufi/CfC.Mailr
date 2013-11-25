@@ -75,7 +75,6 @@ class RecipientListController extends \TYPO3\Neos\Controller\Module\AbstractModu
 	 */
 	public function batchRecipientListsAction(array $recipientListKeys, $action) {
 		switch ($action) {
-
 		}
 	}
 
@@ -85,7 +84,6 @@ class RecipientListController extends \TYPO3\Neos\Controller\Module\AbstractModu
 	 */
 	public function batchMembersAction(array $recipientListKeys, $action) {
 		switch ($action) {
-
 		}
 	}
 
@@ -118,5 +116,4 @@ class RecipientListController extends \TYPO3\Neos\Controller\Module\AbstractModu
 		$this->addFlashMessage('The recipient list has been deleted.');
 		$this->redirect('index');
 	}
-
 }

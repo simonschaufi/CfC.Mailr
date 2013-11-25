@@ -14,4 +14,3 @@ use TYPO3\Flow\Persistence\Repository;
  */
 class ActivityRepository extends Repository {
 }
-?>

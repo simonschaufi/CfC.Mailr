@@ -53,6 +53,4 @@ class Group {
 	public function getMembers() {
 		return $this->members;
 	}
-
 }
-?>

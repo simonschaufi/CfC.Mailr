@@ -71,6 +71,5 @@ class MemberController extends \TYPO3\Neos\Controller\Module\AbstractModuleContr
 
 
 	public function editGroupsAction(\CfC\Mailr\Domain\Model\Member $member, array $groups) {
-
 	}
 }

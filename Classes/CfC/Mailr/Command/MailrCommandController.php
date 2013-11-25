@@ -21,5 +21,3 @@ class MailrCommandController extends \TYPO3\Flow\Cli\CommandController {
 		$this->outputLine('Mails sent.');
 	}
 }
-
-?>

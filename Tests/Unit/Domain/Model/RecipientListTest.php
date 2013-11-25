@@ -22,4 +22,3 @@ class RecipientListTest extends \TYPO3\Flow\Tests\UnitTestCase {
 		$this->assertSame($expected, $actual);
 	}
 }
-?>
