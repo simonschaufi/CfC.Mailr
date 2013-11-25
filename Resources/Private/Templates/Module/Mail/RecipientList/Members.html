@@ -8,12 +8,12 @@
 </f:section>
 
 <f:section name="content">
-	<f:form action="batch">
+	<f:form action="batchMembers">
 		<div class="neos-row neos-module-container neos-indented">
 			<table class="neos-table">
 				<thead>
 					<tr>
-						<th class="check"><!--<input type="checkbox" id="check-all" />--></th>
+						<th class="check"><input type="checkbox" id="check-all" /></th>
 						<th>&nbsp;</th>
 						<th>Email Address</th>
 						<th>First Name</th>
@@ -67,10 +67,10 @@
 		<div class="neos-form-actions neos-form-footer">
 			<div class="neos-pull-left">
 				<div class="neos-button-group">
-					<a class="btn neos-button neos-dropdown-toggle" data-toggle="dropdown" href="#">
+					<button class="neos-button neos-dropdown-toggle batch-action" data-toggle="dropdown" disabled="disabled">
 						Bulk Actions
 						<span class="caret"></span>
-					</a>
+					</button>
 					<ul class="neos-dropdown-menu">
 						<li><a href="#">Unsubscribe</a></li>
 						<li><a href="#">Delete</a></li>
@@ -95,7 +95,7 @@
 				</div>
 			</div>
 			<div class="neos-pull-right">
-				<button class="neos-button-danger neos-button neos-batch-action neos-disabled" data-toggle="neos-modal" href="#delete" disabled="disabled">
+				<button class="neos-button-danger neos-button batch-action neos-disabled" data-toggle="modal" href="#delete" disabled="disabled">
 					<i class="icon-trash icon-white"></i>
 					Delete <strong>selected</strong> members
 				</button>
@@ -107,7 +107,7 @@
 					<button type="button" class="neos-close" data-dismiss="modal"></button>
 					<div class="neos-header">Are you sure you want to delete the selected members?</div>
 					<div class="neos-subheader">
-						This will delete the user and his personal workspace, including all unpublished content.
+						This will delete all selected users.
 						This operation cannot be undone.
 					</div>
 				</div>
@@ -128,14 +128,14 @@
 		function refreshChecks(view) {
 			if(view == 'active') {
 				$('input.bulk-select').each(function(check) {
-					if(checked_eids == 'all' || dojo.indexOf(checked_eids, parseInt(check.value)) != -1) {
+					if (checked_eids == 'all' || dojo.indexOf(checked_eids, parseInt(check.value)) != -1) {
 						check.checked = true;
 					} else {
 						check.checked = false;
 					}
 
 					$(check).click(function(e) {
-						if(checked_eids == 'all') {
+						if (checked_eids == 'all') {
 							//Unchecking a box when "all" were selected should change the selection to the current page minus the unchecked box
 							checked_eids = [];
 							var self = this;
@@ -145,7 +145,7 @@
 									checked_eids.push(parseInt(check.value));
 								}
 							});
-						} else if(this.checked) {
+						} else if (this.checked) {
 							checked_eids.push(parseInt(this.value));
 						} else {
 							$('#select-all-link', 'display','inline');
@@ -153,8 +153,9 @@
 							var found = dojo.indexOf(checked_eids, parseInt(this.value));
 							if(found != -1) {
 								var new_eids = [];
-								for(var i=0; checked_eids.length > i; i++) {
-									if(i != found) new_eids.push(checked_eids[i]);
+								for (var i=0; checked_eids.length > i; i++) {
+									if (i != found)
+										new_eids.push(checked_eids[i]);
 								}
 								checked_eids = new_eids;
 							}
@@ -167,12 +168,12 @@
 		}
 
 		function bulkSelectAll(allall) {
-			if(allall) {
+			if (allall) {
 				checked_eids = 'all';
 				screen_all = false;
 				$('#select-all-link', 'display','none');
 				$('#deselect-all-link', 'display','inline');
-			} else if(checked_eids == 'all' || screen_all) {
+			} else if (checked_eids == 'all' || screen_all) {
 				//Previously all was selected, so revert
 				checked_eids = [];
 				screen_all = false;
@@ -198,17 +199,17 @@
 				var value = false;
 				if ($(this).is(':checked')) {
 					value = true;
-					$('.batch-action').removeClass('disabled').removeAttr('disabled')
+					$('.batch-action').removeClass('neos-disabled').removeAttr('disabled');
 				} else {
-					$('.batch-action').addClass('disabled').attr('disabled', 'disabled');
+					$('.batch-action').addClass('neos-disabled').attr('disabled', 'disabled');
 				}
-				$('tbody input[type="checkbox"]').attr('checked', value);
+				$('tbody input[type="checkbox"]').prop('checked', value);
 			});
 			$('tbody input[type="checkbox"]').change(function() {
 				if ($('tbody input[type="checkbox"]:checked').length > 0) {
-					$('.batch-action').removeClass('disabled').removeAttr('disabled')
+					$('.batch-action').removeClass('neos-disabled').removeAttr('disabled')
 				} else {
-					$('.batch-action').addClass('disabled').attr('disabled', 'disabled');
+					$('.batch-action').addClass('neos-disabled').attr('disabled', 'disabled');
 				}
 			});
 		})(jQuery);

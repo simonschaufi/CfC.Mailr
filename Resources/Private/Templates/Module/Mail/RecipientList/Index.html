@@ -2,12 +2,12 @@
 <f:layout name="BackendSubModule" />
 
 <f:section name="content">
-	<f:form action="batch">
+	<f:form action="batchRecipientLists">
 		<div class="neos-row neos-module-container neos-indented">
 			<table class="neos-table">
 				<thead>
 					<tr>
-						<th class="check"><!--<input type="checkbox" id="check-all" />--></th>
+						<th class="check"><input type="checkbox" id="check-all" /></th>
 						<th></th>
 						<th>List Name</th>
 						<th>Subscribers</th>
@@ -32,7 +32,7 @@
 							<td>
 								<div class="neos-button-group neos-pull-right">
 									<a class="neos-button neos-dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-cog"></i> <b class="neos-caret"></b></a>
-									<div class="neos-dropdown-menu neos-pull-right" style="min-width: 600px;">
+									<div class="neos-dropdown-menu neos-pull-right" style="min-width: 800px;">
 										<div class="neos-span2">
 											<div class="nav-list">
 												<div class="neos-control-group">&nbsp;<!-- placeholder --></div>
@@ -242,7 +242,7 @@
 		</div>
 		<div class="neos-form-actions neos-form-footer">
 			<div class="neos-pull-right">
-				<button class="neos-button-danger neos-button neos-batch-action neos-disabled" data-toggle="neos-modal" href="#delete" disabled="disabled">
+				<button class="neos-button neos-button-danger batch-action neos-disabled" data-toggle="modal" href="#delete" disabled="disabled">
 					<i class="icon-trash icon-white"></i>
 					Delete <strong>selected</strong> members
 				</button>
@@ -272,4 +272,30 @@
 			<div class="neos-modal-backdrop neos-in"></div>
 		</div>
 	</f:form>
+
+	<script>
+		(function($) {
+			$('#check-all').change(function() {
+				var value = false;
+				if ($(this).is(':checked')) {
+					value = true;
+					$('.batch-action').removeClass('neos-disabled').removeAttr('disabled');
+				} else {
+					$('.batch-action').addClass('neos-disabled').attr('disabled', 'disabled');
+				}
+				$('tbody input[type="checkbox"]').prop('checked', value);
+			});
+			$('tbody input[type="checkbox"]').change(function() {
+				if ($('tbody input[type="checkbox"]:checked').length > 0) {
+					$('.batch-action').removeClass('neos-disabled').removeAttr('disabled')
+				} else {
+					$('.batch-action').addClass('neos-disabled').attr('disabled', 'disabled');
+				}
+			});
+			$('.fold-toggle').click(function() {
+				$(this).toggleClass('icon-chevron-down icon-chevron-right');
+				$('tr.' + $(this).data('toggle')).toggle();
+			});
+		})(jQuery);
+	</script>
 </f:section>

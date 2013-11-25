@@ -70,10 +70,20 @@ class RecipientListController extends \TYPO3\Neos\Controller\Module\AbstractModu
 	}
 
 	/**
-	 * @param array $memberKeys
+	 * @param array $recipientListKeys
 	 * @param string $action
 	 */
-	public function batchAction(array $memberKeys, $action) {
+	public function batchRecipientListsAction(array $recipientListKeys, $action) {
+		switch ($action) {
+
+		}
+	}
+
+	/**
+	 * @param array $recipientListKeys
+	 * @param string $action
+	 */
+	public function batchMembersAction(array $recipientListKeys, $action) {
 		switch ($action) {
 
 		}
