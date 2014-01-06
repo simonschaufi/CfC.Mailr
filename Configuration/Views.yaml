@@ -1,0 +1,9 @@
+-
+  requestFilter: 'parentRequest.isPackage("TYPO3.Neos") && isPackage("CfC.Mailr")'
+  options:
+    layoutRootPaths:
+      'TYPO3.Neos': 'resource://TYPO3.Neos/Private/Layouts/'
+      'CfC.Mailr': 'resource://CfC.Mailr/Private/Layouts/'
+    partialRootPaths:
+      'TYPO3.Neos': 'resource://TYPO3.Neos/Private/Partials/Module'
+      'CfC.Mailr': 'resource://CfC.Mailr/Private/Partials/'

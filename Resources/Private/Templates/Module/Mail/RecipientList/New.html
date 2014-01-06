@@ -1,145 +1,141 @@
 <f:layout name="BackendSubModule" />
 
 <f:section name="subtitle">
-	<div class="neos-row neos-module-container neos-indented">
+	<div class="neos-module-container">
 		<h2>Set Up Your New List</h2>
 	</div>
 </f:section>
 
 <f:section name="content">
 	<f:form action="create" name="recipientList" object="{recipientList}">
-		<div class="neos-module-container">
-			<div class="neos-row-fluid">
-				<div class="neos-span6">
-					<legend>List</legend>
+		<div class="neos-row-fluid neos-module-container">
+			<fieldset class="neos-span5">
+				<legend>List</legend>
 
-					<div class="neos-control-group">
-						<label class="neos-control-label" for="listName">List Name <span class="text-error">*</span></label>
-						<div class="neos-controls">
-							<f:form.textfield property="listName" id="listName" class="span11" />
-						</div>
+				<div class="neos-control-group">
+					<label class="neos-control-label" for="listName">List Name <span class="text-error">*</span></label>
+					<div class="neos-controls">
+						<f:form.textfield property="listName" id="listName" class="span12" />
 					</div>
-
-					<div class="neos-control-group">
-						<label class="neos-control-label" for="defaultFromName">Default From Name <span class="text-error">*</span></label>
-						<div class="neos-controls">
-							<f:form.textfield property="defaultFromName" id="defaultFromName" class="span11" />
-						</div>
-					</div>
-
-					<div class="neos-control-group">
-						<label class="neos-control-label" for="defaultReplyToEmail">Default Reply-To Email <span class="text-error">*</span></label>
-						<div class="neos-controls">
-							<f:form.textfield property="defaultReplyToEmail" id="defaultReplyToEmail" class="span11" />
-						</div>
-					</div>
-
-					<div class="neos-control-group">
-						<label class="neos-control-label" for="defaultSubject">Default Subject</label>
-						<div class="neos-controls">
-							<f:form.textfield property="defaultSubject" id="defaultSubject" class="span11" />
-						</div>
-					</div>
-
-					<div class="neos-control-group">
-						<label class="neos-control-label" for="description">Remind people how they got on your list</label>
-						<div class="neos-controls">
-							<f:form.textarea property="description" id="description" class="span11" />
-						</div>
-					</div>
-
 				</div>
 
-				<div class="neos-span6">
-					<legend>Personal Data</legend>
-
-					<div class="neos-control-group">
-						<label class="neos-control-label" for="company">Company <span class="text-error">*</span></label>
-						<div class="neos-controls">
-							<f:form.textfield property="company" id="company" class="neos-span11" />
-						</div>
+				<div class="neos-control-group">
+					<label class="neos-control-label" for="defaultFromName">Default From Name <span class="text-error">*</span></label>
+					<div class="neos-controls">
+						<f:form.textfield property="defaultFromName" id="defaultFromName" class="span12" />
 					</div>
-
-					<div class="neos-control-group">
-						<label class="neos-control-label" for="address">Address <span class="text-error">*</span></label>
-						<div class="neos-controls">
-							<f:form.textfield property="address" id="address" class="neos-span11" />
-						</div>
-					</div>
-
-					<div class="neos-control-group">
-						<label class="neos-control-label" for="city">City <span class="text-error">*</span></label>
-						<div class="neos-controls">
-							<f:form.textfield property="city" id="city" class="neos-span11" />
-						</div>
-					</div>
-
-					<div class="neos-control-group">
-						<label class="neos-control-label" for="zip">Zip/Postal Code <span class="text-error">*</span></label>
-						<div class="neos-controls">
-							<f:form.textfield property="zip" id="zip" class="neos-span11"/>
-						</div>
-					</div>
-
-					<div class="neos-control-group">
-						<label class="neos-control-label" for="country">Country <span class="text-error">*</span></label>
-						<div class="neos-controls">
-							<f:form.textfield property="country" id="country" class="neos-span11"/>
-						</div>
-					</div>
-
-					<div class="neos-control-group">
-						<label class="neos-control-label" for="phone">Phone</label>
-						<div class="neos-controls">
-							<f:form.textfield property="phone" id="phone" class="neos-span11"/>
-						</div>
-					</div>
-
 				</div>
-			</div>
 
-			<div class="neos-row-fluid">
-				<div class="neos-span12">
-
-					<div class="neos-control-group">
-						<label class="neos-control-label">Notifications</label>
-						<div class="neos-row-fluid">
-							<div class="neos-span6">
-								<label class="neos-checkbox">
-									<input type="checkbox"> Daily Summary: summary of subscribe/unsubscribe activity
-								</label>
-							</div>
-							<div class="neos-span6">
-								<label class="neos-checkbox">
-									<input type="checkbox"> One By One: subscribe notifications as they happen
-								</label>
-								<label class="neos-checkbox">
-									<input type="checkbox"> One By One: unsubscribe notifications as they happen
-								</label>
-							</div>
-						</div>
+				<div class="neos-control-group">
+					<label class="neos-control-label" for="defaultReplyToEmail">Default Reply-To Email <span class="text-error">*</span></label>
+					<div class="neos-controls">
+						<f:form.textfield property="defaultReplyToEmail" id="defaultReplyToEmail" class="span12" />
 					</div>
-
-					<div class="neos-control-group">
-						<label class="neos-control-label">Email Format</label>
-						<div class="neos-row-fluid">
-							<div class="neos-controls">
-								<label class="neos-checkbox">
-									<input type="checkbox"> People Can Pick Email Format (HTML Or Plain-Text)
-								</label>
-							</div>
-						</div>
-					</div>
-
 				</div>
+
+				<div class="neos-control-group">
+					<label class="neos-control-label" for="defaultSubject">Default Subject</label>
+					<div class="neos-controls">
+						<f:form.textfield property="defaultSubject" id="defaultSubject" class="span12" />
+					</div>
+				</div>
+
+				<div class="neos-control-group">
+					<label class="neos-control-label" for="description">Remind people how they got on your list</label>
+					<div class="neos-controls">
+						<f:form.textarea property="description" id="description" class="span12" />
+					</div>
+				</div>
+
+			</fieldset>
+
+			<fieldset class="neos-span5 neos-offset1">
+				<legend>Personal Data</legend>
+
+				<div class="neos-control-group">
+					<label class="neos-control-label" for="company">Company <span class="text-error">*</span></label>
+					<div class="neos-controls">
+						<f:form.textfield property="company" id="company" class="neos-span12" />
+					</div>
+				</div>
+
+				<div class="neos-control-group">
+					<label class="neos-control-label" for="address">Address <span class="text-error">*</span></label>
+					<div class="neos-controls">
+						<f:form.textfield property="address" id="address" class="neos-span12" />
+					</div>
+				</div>
+
+				<div class="neos-control-group">
+					<label class="neos-control-label" for="city">City <span class="text-error">*</span></label>
+					<div class="neos-controls">
+						<f:form.textfield property="city" id="city" class="neos-span12" />
+					</div>
+				</div>
+
+				<div class="neos-control-group">
+					<label class="neos-control-label" for="zip">Zip/Postal Code <span class="text-error">*</span></label>
+					<div class="neos-controls">
+						<f:form.textfield property="zip" id="zip" class="neos-span12"/>
+					</div>
+				</div>
+
+				<div class="neos-control-group">
+					<label class="neos-control-label" for="country">Country <span class="text-error">*</span></label>
+					<div class="neos-controls">
+						<f:form.textfield property="country" id="country" class="neos-span12"/>
+					</div>
+				</div>
+
+				<div class="neos-control-group">
+					<label class="neos-control-label" for="phone">Phone</label>
+					<div class="neos-controls">
+						<f:form.textfield property="phone" id="phone" class="neos-span12"/>
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<div class="neos-row-fluid">
+			<div class="neos-span12">
+
+				<div class="neos-control-group">
+					<label class="neos-control-label">Notifications</label>
+					<div class="neos-row-fluid">
+						<div class="neos-span6">
+							<label class="neos-checkbox">
+								<input type="checkbox"> Daily Summary: summary of subscribe/unsubscribe activity
+							</label>
+						</div>
+						<div class="neos-span6">
+							<label class="neos-checkbox">
+								<input type="checkbox"> One By One: subscribe notifications as they happen
+							</label>
+							<label class="neos-checkbox">
+								<input type="checkbox"> One By One: unsubscribe notifications as they happen
+							</label>
+						</div>
+					</div>
+				</div>
+
+				<div class="neos-control-group">
+					<label class="neos-control-label">Email Format</label>
+					<div class="neos-row-fluid">
+						<div class="neos-controls">
+							<label class="neos-checkbox">
+								<input type="checkbox"> People Can Pick Email Format (HTML Or Plain-Text)
+							</label>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
 
-		<div class="neos-form-actions neos-form-footer">
+		<div class="neos-footer">
 			<f:link.action action="index" class="neos-button">Cancel</f:link.action>
-			<div class="neos-pull-right">
-				<f:form.submit value="Save" class="neos-button neos-button-primary" />
-			</div>
+			<f:form.submit value="Save" class="neos-button neos-button-primary" />
 		</div>
 	</f:form>
 </f:section>
