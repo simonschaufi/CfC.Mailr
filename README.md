@@ -1,3 +1,5 @@
+[![StyleCI](https://styleci.io/repos/11291123/shield)](https://styleci.io/repos/11291123)
+
 # CfC.Mailr
 
 A bulk mailer module for Neos
