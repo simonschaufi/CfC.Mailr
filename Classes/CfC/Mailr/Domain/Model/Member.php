@@ -14,359 +14,394 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @Flow\Entity
  */
-class Member extends \TYPO3\Party\Domain\Model\AbstractParty {
+class Member extends \TYPO3\Party\Domain\Model\AbstractParty
+{
 
-	/**
-	 * @var string
-	 */
-	protected $email;
+    /**
+     * @var string
+     */
+    protected $email;
 
-	/**
-	 * @var integer
-	 * @ORM\Column(type="smallint")
-	 */
-	protected $rating;
+    /**
+     * @var integer
+     * @ORM\Column(type="smallint")
+     */
+    protected $rating;
 
-	/**
-	 * @var \DateTime
-	 */
-	protected $optinTime;
+    /**
+     * @var \DateTime
+     */
+    protected $optinTime;
 
-	/**
-	 * @var \DateTime
-	 */
-	protected $lastUpdateTime;
+    /**
+     * @var \DateTime
+     */
+    protected $lastUpdateTime;
 
-	/**
-	 * @var string
-	 */
-	protected $language;
+    /**
+     * @var string
+     */
+    protected $language;
 
-	/**
-	 * @var \CfC\Mailr\Domain\Model\RecipientList
-	 * @ORM\ManyToOne(inversedBy="members")
-	 */
-	protected $recipientList;
+    /**
+     * @var \CfC\Mailr\Domain\Model\RecipientList
+     * @ORM\ManyToOne(inversedBy="members")
+     */
+    protected $recipientList;
 
-	/**
-	 * @var \CfC\Mailr\Domain\Model\Campaign
-	 * @ORM\ManyToOne
-	 */
-	protected $unsubCampaign;
+    /**
+     * @var \CfC\Mailr\Domain\Model\Campaign
+     * @ORM\ManyToOne
+     */
+    protected $unsubCampaign;
 
-	/**
-	 * @var \DateTime
-	 * @ORM\Column(nullable=true)
-	 */
-	protected $unsubTime;
+    /**
+     * @var \DateTime
+     * @ORM\Column(nullable=true)
+     */
+    protected $unsubTime;
 
-	/**
-	 * @var string
-	 * @ORM\Column(nullable=true)
-	 */
-	protected $unsubReason;
+    /**
+     * @var string
+     * @ORM\Column(nullable=true)
+     */
+    protected $unsubReason;
 
-	/**
-	 * @var string
-	 * @ORM\Column(nullable=true)
-	 */
-	protected $unsubReasonText;
+    /**
+     * @var string
+     * @ORM\Column(nullable=true)
+     */
+    protected $unsubReasonText;
 
-	/**
-	 * @var \CfC\Mailr\Domain\Model\Campaign
-	 * @ORM\ManyToOne
-	 */
-	protected $bounceCampaign;
+    /**
+     * @var \CfC\Mailr\Domain\Model\Campaign
+     * @ORM\ManyToOne
+     */
+    protected $bounceCampaign;
 
-	/**
-	 * @var \DateTime
-	 * @ORM\Column(nullable=true)
-	 */
-	protected $bounceTime;
+    /**
+     * @var \DateTime
+     * @ORM\Column(nullable=true)
+     */
+    protected $bounceTime;
 
-	/**
-	 * @var string
-	 */
-	protected $active;
+    /**
+     * @var string
+     */
+    protected $active;
 
-	/**
-	 * @var string
-	 */
-	protected $firstName;
+    /**
+     * @var string
+     */
+    protected $firstName;
 
-	/**
-	 * @var string
-	 */
-	protected $lastName;
+    /**
+     * @var string
+     */
+    protected $lastName;
 
-	/**
-	 * @var \Doctrine\Common\Collections\Collection<\CfC\Mailr\Domain\Model\Group>
-	 * @ORM\ManyToMany(inversedBy="members")
-	 */
-	protected $groups;
-
-
-	/**
-	 * Constructs a new Member
-	 */
-	public function __construct() {
-		$this->groups = new \Doctrine\Common\Collections\ArrayCollection();
-		$this->rating = 0;
-		$this->optinTime = new \DateTime();
-		$this->lastUpdateTime = new \DateTime();
-		$this->language = '';
-		$this->active = 1;
-	}
-
-	/**
-	 * @param string $email
-	 */
-	public function setEmail($email) {
-		$this->email = $email;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getEmail() {
-		return $this->email;
-	}
+    /**
+     * @var \Doctrine\Common\Collections\Collection<\CfC\Mailr\Domain\Model\Group>
+     * @ORM\ManyToMany(inversedBy="members")
+     */
+    protected $groups;
 
 
-	/**
-	 * Setter for firstName
-	 *
-	 * @param string $firstName
-	 * @return void
-	 */
-	public function setFirstName($firstName) {
-		$this->firstName = $firstName;
-	}
+    /**
+     * Constructs a new Member
+     */
+    public function __construct()
+    {
+        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->rating = 0;
+        $this->optinTime = new \DateTime();
+        $this->lastUpdateTime = new \DateTime();
+        $this->language = '';
+        $this->active = 1;
+    }
 
-	/**
-	 * Getter for firstName
-	 *
-	 * @return string
-	 */
-	public function getFirstName() {
-		return $this->firstName;
-	}
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
 
-
-	/**
-	 * Setter for lastName
-	 *
-	 * @param string $lastName
-	 * @return void
-	 */
-	public function setLastName($lastName) {
-		$this->lastName = $lastName;
-	}
-
-	/**
-	 * Getter for lastName
-	 *
-	 * @return string
-	 */
-	public function getLastName() {
-		return $this->lastName;
-	}
-
-	/**
-	 * Getter for full name
-	 *
-	 * @return string
-	 */
-	public function getName() {
-		//TODO switch in english?
-		return $this->firstName.' '.$this->lastName;
-	}
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
 
 
-	/**
-	 * @return integer
-	 */
-	public function getRating() {
-		return $this->rating;
-	}
+    /**
+     * Setter for firstName
+     *
+     * @param string $firstName
+     * @return void
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+    }
 
-	/**
-	 * @param integer $rating
-	 * @return void
-	 */
-	public function setRating($rating) {
-		$this->rating = $rating;
-	}
+    /**
+     * Getter for firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
 
-	/**
-	 * @param string $active
-	 */
-	public function setActive($active) {
-		$this->active = $active;
-	}
 
-	/**
-	 * @return string
-	 */
-	public function getActive() {
-		return $this->active;
-	}
+    /**
+     * Setter for lastName
+     *
+     * @param string $lastName
+     * @return void
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+    }
 
-	/**
-	 * @param \CfC\Mailr\Domain\Model\Campaign $bounceCampaign
-	 */
-	public function setBounceCampaign($bounceCampaign) {
-		$this->bounceCampaign = $bounceCampaign;
-	}
+    /**
+     * Getter for lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
 
-	/**
-	 * @return \CfC\Mailr\Domain\Model\Campaign
-	 */
-	public function getBounceCampaign() {
-		return $this->bounceCampaign;
-	}
+    /**
+     * Getter for full name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        //TODO switch in english?
+        return $this->firstName.' '.$this->lastName;
+    }
 
-	/**
-	 * @param \DateTime $bounceTime
-	 */
-	public function setBounceTime($bounceTime) {
-		$this->bounceTime = $bounceTime;
-	}
 
-	/**
-	 * @return \DateTime
-	 */
-	public function getBounceTime() {
-		return $this->bounceTime;
-	}
+    /**
+     * @return integer
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
 
-	/**
-	 * @param string $language
-	 */
-	public function setLanguage($language) {
-		$this->language = $language;
-	}
+    /**
+     * @param integer $rating
+     * @return void
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getLanguage() {
-		return $this->language;
-	}
+    /**
+     * @param string $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
 
-	/**
-	 * @param \DateTime $lastUpdateTime
-	 */
-	public function setLastUpdateTime($lastUpdateTime) {
-		$this->lastUpdateTime = $lastUpdateTime;
-	}
+    /**
+     * @return string
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
 
-	/**
-	 * @return \DateTime
-	 */
-	public function getLastUpdateTime() {
-		return $this->lastUpdateTime;
-	}
+    /**
+     * @param \CfC\Mailr\Domain\Model\Campaign $bounceCampaign
+     */
+    public function setBounceCampaign($bounceCampaign)
+    {
+        $this->bounceCampaign = $bounceCampaign;
+    }
 
-	/**
-	 * @param \DateTime $optinTime
-	 */
-	public function setOptinTime($optinTime) {
-		$this->optinTime = $optinTime;
-	}
+    /**
+     * @return \CfC\Mailr\Domain\Model\Campaign
+     */
+    public function getBounceCampaign()
+    {
+        return $this->bounceCampaign;
+    }
 
-	/**
-	 * @return \DateTime
-	 */
-	public function getOptinTime() {
-		return $this->optinTime;
-	}
+    /**
+     * @param \DateTime $bounceTime
+     */
+    public function setBounceTime($bounceTime)
+    {
+        $this->bounceTime = $bounceTime;
+    }
 
-	/**
-	 * @param \CfC\Mailr\Domain\Model\Campaign $unsubCampaign
-	 */
-	public function setUnsubCampaign($unsubCampaign) {
-		$this->unsubCampaign = $unsubCampaign;
-	}
+    /**
+     * @return \DateTime
+     */
+    public function getBounceTime()
+    {
+        return $this->bounceTime;
+    }
 
-	/**
-	 * @return \CfC\Mailr\Domain\Model\Campaign
-	 */
-	public function getUnsubCampaign() {
-		return $this->unsubCampaign;
-	}
+    /**
+     * @param string $language
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+    }
 
-	/**
-	 * @param string $unsubReason
-	 */
-	public function setUnsubReason($unsubReason) {
-		$this->unsubReason = $unsubReason;
-	}
+    /**
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getUnsubReason() {
-		return $this->unsubReason;
-	}
+    /**
+     * @param \DateTime $lastUpdateTime
+     */
+    public function setLastUpdateTime($lastUpdateTime)
+    {
+        $this->lastUpdateTime = $lastUpdateTime;
+    }
 
-	/**
-	 * @param string $unsubReasonText
-	 */
-	public function setUnsubReasonText($unsubReasonText) {
-		$this->unsubReasonText = $unsubReasonText;
-	}
+    /**
+     * @return \DateTime
+     */
+    public function getLastUpdateTime()
+    {
+        return $this->lastUpdateTime;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getUnsubReasonText() {
-		return $this->unsubReasonText;
-	}
+    /**
+     * @param \DateTime $optinTime
+     */
+    public function setOptinTime($optinTime)
+    {
+        $this->optinTime = $optinTime;
+    }
 
-	/**
-	 * @param \DateTime $unsubTime
-	 */
-	public function setUnsubTime($unsubTime) {
-		$this->unsubTime = $unsubTime;
-	}
+    /**
+     * @return \DateTime
+     */
+    public function getOptinTime()
+    {
+        return $this->optinTime;
+    }
 
-	/**
-	 * @return \DateTime
-	 */
-	public function getUnsubTime() {
-		return $this->unsubTime;
-	}
+    /**
+     * @param \CfC\Mailr\Domain\Model\Campaign $unsubCampaign
+     */
+    public function setUnsubCampaign($unsubCampaign)
+    {
+        $this->unsubCampaign = $unsubCampaign;
+    }
 
-	/**
-	 * @param \CfC\Mailr\Domain\Model\RecipientList $recipientList
-	 */
-	public function setRecipientList($recipientList) {
-		$this->recipientList = $recipientList;
-	}
+    /**
+     * @return \CfC\Mailr\Domain\Model\Campaign
+     */
+    public function getUnsubCampaign()
+    {
+        return $this->unsubCampaign;
+    }
 
-	/**
-	 * @return \CfC\Mailr\Domain\Model\RecipientList
-	 */
-	public function getRecipientList() {
-		return $this->recipientList;
-	}
+    /**
+     * @param string $unsubReason
+     */
+    public function setUnsubReason($unsubReason)
+    {
+        $this->unsubReason = $unsubReason;
+    }
 
-	/**
-	 * @param \Doctrine\Common\Collections\Collection<\CfC\Mailr\Domain\Model\Group> $groups
-	 */
-	public function setGroups($groups) {
-		$this->groups = $groups;
-	}
+    /**
+     * @return string
+     */
+    public function getUnsubReason()
+    {
+        return $this->unsubReason;
+    }
 
-	/**
-	 * @return \Doctrine\Common\Collections\Collection<\CfC\Mailr\Domain\Model\Group>
-	 */
-	public function getGroups() {
-		$groups = array();
-		foreach ($this->groups as $group) {
-			$groups[\TYPO3\Flow\Reflection\ObjectAccess::getProperty($group, 'Persistence_Object_Identifier', TRUE)] = $group;
-		}
-		return $groups;
-	}
+    /**
+     * @param string $unsubReasonText
+     */
+    public function setUnsubReasonText($unsubReasonText)
+    {
+        $this->unsubReasonText = $unsubReasonText;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUnsubReasonText()
+    {
+        return $this->unsubReasonText;
+    }
+
+    /**
+     * @param \DateTime $unsubTime
+     */
+    public function setUnsubTime($unsubTime)
+    {
+        $this->unsubTime = $unsubTime;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUnsubTime()
+    {
+        return $this->unsubTime;
+    }
+
+    /**
+     * @param \CfC\Mailr\Domain\Model\RecipientList $recipientList
+     */
+    public function setRecipientList($recipientList)
+    {
+        $this->recipientList = $recipientList;
+    }
+
+    /**
+     * @return \CfC\Mailr\Domain\Model\RecipientList
+     */
+    public function getRecipientList()
+    {
+        return $this->recipientList;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection<\CfC\Mailr\Domain\Model\Group> $groups
+     */
+    public function setGroups($groups)
+    {
+        $this->groups = $groups;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection<\CfC\Mailr\Domain\Model\Group>
+     */
+    public function getGroups()
+    {
+        $groups = array();
+        foreach ($this->groups as $group) {
+            $groups[\TYPO3\Flow\Reflection\ObjectAccess::getProperty($group, 'Persistence_Object_Identifier', true)] = $group;
+        }
+        return $groups;
+    }
 }

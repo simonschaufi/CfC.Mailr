@@ -12,45 +12,50 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @Flow\Entity
  */
-class Group {
+class Group
+{
 
-	/**
-	 * @var string
-	 */
-	protected $name;
+    /**
+     * @var string
+     */
+    protected $name;
 
-	/**
-	 * @var \Doctrine\Common\Collections\Collection<\CfC\Mailr\Domain\Model\Member>
-	 * @ORM\ManyToMany(mappedBy="groups")
-	 */
-	protected $members;
+    /**
+     * @var \Doctrine\Common\Collections\Collection<\CfC\Mailr\Domain\Model\Member>
+     * @ORM\ManyToMany(mappedBy="groups")
+     */
+    protected $members;
 
 
-	/**
-	 * @param string $name
-	 */
-	public function setName($name) {
-		$this->name = $name;
-	}
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getName() {
-		return $this->name;
-	}
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	/**
-	 * @param \Doctrine\Common\Collections\Collection<\CfC\Mailr\Domain\Model\Member> $members
-	 */
-	public function setMembers($members) {
-		$this->members = $members;
-	}
+    /**
+     * @param \Doctrine\Common\Collections\Collection<\CfC\Mailr\Domain\Model\Member> $members
+     */
+    public function setMembers($members)
+    {
+        $this->members = $members;
+    }
 
-	/**
-	 * @return \Doctrine\Common\Collections\Collection<\CfC\Mailr\Domain\Model\Member>
-	 */
-	public function getMembers() {
-		return $this->members;
-	}
+    /**
+     * @return \Doctrine\Common\Collections\Collection<\CfC\Mailr\Domain\Model\Member>
+     */
+    public function getMembers()
+    {
+        return $this->members;
+    }
 }

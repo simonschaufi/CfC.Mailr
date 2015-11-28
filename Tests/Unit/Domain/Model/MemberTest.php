@@ -9,16 +9,18 @@ namespace CfC\Mailr\Tests\Unit\Domain\Model;
 /**
  * Testcase for Member
  */
-class MemberTest extends \TYPO3\Flow\Tests\UnitTestCase {
+class MemberTest extends \TYPO3\Flow\Tests\UnitTestCase
+{
 
-	/**
-	 * @test
-	 */
-	public function makeSureThatSomethingHolds() {
-		$this->markTestIncomplete('Automatically generated test case; you need to adjust this!');
+    /**
+     * @test
+     */
+    public function makeSureThatSomethingHolds()
+    {
+        $this->markTestIncomplete('Automatically generated test case; you need to adjust this!');
 
-		$expected = 'Foo';
-		$actual = 'Foo'; // This should be the result of some function call
-		$this->assertSame($expected, $actual);
-	}
+        $expected = 'Foo';
+        $actual = 'Foo'; // This should be the result of some function call
+        $this->assertSame($expected, $actual);
+    }
 }

@@ -12,5 +12,6 @@ use TYPO3\Flow\Persistence\Repository;
 /**
  * @Flow\Scope("singleton")
  */
-class ReportRepository extends Repository {
+class ReportRepository extends Repository
+{
 }
