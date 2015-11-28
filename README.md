@@ -1,4 +1,4 @@
-[![StyleCI](https://styleci.io/repos/11291123/shield)](https://styleci.io/repos/11291123)
+[![StyleCI](https://styleci.io/repos/11291123/shield)](https://styleci.io/repos/11291123) [![Code Climate](https://codeclimate.com/github/simonschaufi/CfC.Mailr/badges/gpa.svg)](https://codeclimate.com/github/simonschaufi/CfC.Mailr)
 
 # CfC.Mailr
 
