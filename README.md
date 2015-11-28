@@ -1,10 +1,8 @@
-CfC.Mailr
-=========
+# CfC.Mailr
 
-A bulk mailer module for TYPO3 Neos
+A bulk mailer module for Neos
 
-Contributing
-------------
+## Contributing
 
 1. Fork it.
 2. Create a branch (`git checkout -b kick_ass_feature`)
