@@ -3,4 +3,5 @@ preset: psr2
 finder:
   path:
     - "Classes"
+    - "Migrations"
     - "Tests"
