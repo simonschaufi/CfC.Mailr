@@ -14,36 +14,39 @@ use TYPO3\Neos\Domain\Service\ContentContext;
  *
  * @Flow\Scope("singleton")
  */
-class CampaignController extends \TYPO3\Neos\Controller\Module\AbstractModuleController {
+class CampaignController extends \TYPO3\Neos\Controller\Module\AbstractModuleController
+{
 
-	/**
-	 * @return void
-	 */
-	public function indexAction() {
-		$this->view->assign('foo', array(
-			'bar', 'baz'
-		));
-	}
+    /**
+     * @return void
+     */
+    public function indexAction()
+    {
+        $this->view->assign('foo', array(
+            'bar', 'baz'
+        ));
+    }
 
-	/**
-	 * @return void
-	 */
-	public function newAction() {
-		$path = '/sites/neosdemotypo3org/features/imagetext';
-		$nodeConverter = new \TYPO3\Neos\TypeConverter\NodeConverter();
-		$propertyMapperConfiguration = new \TYPO3\Flow\Property\PropertyMappingConfiguration();
-		$node = $nodeConverter->convertFrom($path, NULL, array(), $propertyMapperConfiguration);
+    /**
+     * @return void
+     */
+    public function newAction()
+    {
+        $path = '/sites/neosdemotypo3org/features/imagetext';
+        $nodeConverter = new \TYPO3\Neos\TypeConverter\NodeConverter();
+        $propertyMapperConfiguration = new \TYPO3\Flow\Property\PropertyMappingConfiguration();
+        $node = $nodeConverter->convertFrom($path, null, array(), $propertyMapperConfiguration);
 
-		$view = $this->objectManager->get('\TYPO3\Neos\View\TypoScriptView'); /* @var $view \TYPO3\Neos\View\TypoScriptView */
+        $view = $this->objectManager->get('\TYPO3\Neos\View\TypoScriptView'); /* @var $view \TYPO3\Neos\View\TypoScriptView */
 
-		#$typoScriptPath = 'page<TYPO3.Neos:Page>/body<TYPO3.TypoScript:Template>/sections/main<TYPO3.Neos:Section>/default<TYPO3.TypoScript:Matcher>/element<TYPO3.Neos.NodeTypes:Section.Default>/itemRenderer<TYPO3.TypoScript:Case>/default<TYPO3.TypoScript:Matcher>/element<TYPO3.Neos.NodeTypes:Text>';
-		#$typoScriptPath = 'page<TYPO3.Neos:Page>/body<TYPO3.TypoScript:Template>/sections/main<TYPO3.Neos:Section>/default<TYPO3.TypoScript:Matcher>/element<TYPO3.Neos.NodeTypes:Section.Default>';
-		#$typoScriptPath = 'page<TYPO3.Neos:Page>/body<TYPO3.TypoScript:Template>/sections/main<TYPO3.Neos:Section>';
+        #$typoScriptPath = 'page<TYPO3.Neos:Page>/body<TYPO3.TypoScript:Template>/sections/main<TYPO3.Neos:Section>/default<TYPO3.TypoScript:Matcher>/element<TYPO3.Neos.NodeTypes:Section.Default>/itemRenderer<TYPO3.TypoScript:Case>/default<TYPO3.TypoScript:Matcher>/element<TYPO3.Neos.NodeTypes:Text>';
+        #$typoScriptPath = 'page<TYPO3.Neos:Page>/body<TYPO3.TypoScript:Template>/sections/main<TYPO3.Neos:Section>/default<TYPO3.TypoScript:Matcher>/element<TYPO3.Neos.NodeTypes:Section.Default>';
+        #$typoScriptPath = 'page<TYPO3.Neos:Page>/body<TYPO3.TypoScript:Template>/sections/main<TYPO3.Neos:Section>';
 
-		$view->assign('value', $node);
-		$output = $view->render();
+        $view->assign('value', $node);
+        $output = $view->render();
 
-		echo $output;
-		exit;
-	}
+        echo $output;
+        exit;
+    }
 }

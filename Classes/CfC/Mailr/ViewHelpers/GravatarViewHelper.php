@@ -19,48 +19,49 @@ namespace CfC\Mailr\ViewHelpers;
  * <img class="gravatar" src="http://www.gravatar.com/avatar/<hash>?d=http%3A%2F%2Fdomain.com%2Fgravatar_default.gif" />
  *
  */
-class GravatarViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
+class GravatarViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+{
 
-	/**
-	 * @var string
-	 */
-	protected $tagName = 'img';
+    /**
+     * @var string
+     */
+    protected $tagName = 'img';
 
-	/**
-	 * Initialize arguments
-	 *
-	 * @return void
-	 */
-	public function initializeArguments() {
-		parent::initializeArguments();
-		$this->registerArgument('email', 'string', 'Gravatar Email', TRUE);
-		$this->registerArgument('default', 'string', 'Default URL if no gravatar was found');
-		$this->registerArgument('size', 'Integer', 'Size of the gravatar');
+    /**
+     * Initialize arguments
+     *
+     * @return void
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('email', 'string', 'Gravatar Email', true);
+        $this->registerArgument('default', 'string', 'Default URL if no gravatar was found');
+        $this->registerArgument('size', 'Integer', 'Size of the gravatar');
 
-		$this->registerUniversalTagAttributes();
-	}
+        $this->registerUniversalTagAttributes();
+    }
 
-	/**
-	 * Render the link.
-	 *
-	 * @return string The rendered link
-	 */
-	public function render() {
-		$gravatarUri = 'http://www.gravatar.com/avatar/' . md5((string)$this->arguments['email']);
-		$uriParts = array();
-		if ($this->arguments['default']) {
-			$uriParts[] = 'd=' . urlencode($this->arguments['default']);
-		}
-		if ($this->arguments['size']) {
-			$uriParts[] = 's=' . $this->arguments['size'];
-		}
-		if (count($uriParts)) {
-			$gravatarUri .= '?' . implode('&', $uriParts);
-		}
+    /**
+     * Render the link.
+     *
+     * @return string The rendered link
+     */
+    public function render()
+    {
+        $gravatarUri = 'http://www.gravatar.com/avatar/' . md5((string)$this->arguments['email']);
+        $uriParts = array();
+        if ($this->arguments['default']) {
+            $uriParts[] = 'd=' . urlencode($this->arguments['default']);
+        }
+        if ($this->arguments['size']) {
+            $uriParts[] = 's=' . $this->arguments['size'];
+        }
+        if (count($uriParts)) {
+            $gravatarUri .= '?' . implode('&', $uriParts);
+        }
 
-		$this->tag->addAttribute('src', $gravatarUri);
-		return $this->tag->render();
-	}
+        $this->tag->addAttribute('src', $gravatarUri);
+        return $this->tag->render();
+    }
 }
-
-?>

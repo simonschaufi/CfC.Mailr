@@ -13,11 +13,13 @@ use TYPO3\Flow\Annotations as Flow;
  *
  * @Flow\Scope("singleton")
  */
-class ReportController extends \TYPO3\Neos\Controller\Module\AbstractModuleController {
+class ReportController extends \TYPO3\Neos\Controller\Module\AbstractModuleController
+{
 
-	/**
-	 * @return void
-	 */
-	public function indexAction() {
-	}
+    /**
+     * @return void
+     */
+    public function indexAction()
+    {
+    }
 }
