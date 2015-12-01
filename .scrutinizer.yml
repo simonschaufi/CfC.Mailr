@@ -1,0 +1,11 @@
+checks:
+  php: true
+filter: {  }
+coding_style:
+  php:
+    indentation:
+      general:
+        size: 1
+    spaces:
+      other:
+        after_type_cast: false
