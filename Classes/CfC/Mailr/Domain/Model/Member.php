@@ -6,15 +6,18 @@ namespace CfC\Mailr\Domain\Model;
  *                                                                        *
  *                                                                        */
 
+use Doctrine\Common\Collections\ArrayCollection;
 use TYPO3\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
+use TYPO3\Flow\Reflection\ObjectAccess;
+use TYPO3\Party\Domain\Model\AbstractParty;
 
 /**
  * A Member of a Recipient List
  *
  * @Flow\Entity
  */
-class Member extends \TYPO3\Party\Domain\Model\AbstractParty
+class Member extends AbstractParty
 {
 
     /**
@@ -86,7 +89,7 @@ class Member extends \TYPO3\Party\Domain\Model\AbstractParty
     protected $bounceTime;
 
     /**
-     * @var string
+     * @var int
      */
     protected $active;
 
@@ -112,7 +115,8 @@ class Member extends \TYPO3\Party\Domain\Model\AbstractParty
      */
     public function __construct()
     {
-        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+        parent::__construct();
+        $this->groups = new ArrayCollection();
         $this->rating = 0;
         $this->optinTime = new \DateTime();
         $this->lastUpdateTime = new \DateTime();
@@ -210,7 +214,7 @@ class Member extends \TYPO3\Party\Domain\Model\AbstractParty
     }
 
     /**
-     * @param string $active
+     * @param int $active
      */
     public function setActive($active)
     {
@@ -218,7 +222,7 @@ class Member extends \TYPO3\Party\Domain\Model\AbstractParty
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getActive()
     {
@@ -400,7 +404,7 @@ class Member extends \TYPO3\Party\Domain\Model\AbstractParty
     {
         $groups = array();
         foreach ($this->groups as $group) {
-            $groups[\TYPO3\Flow\Reflection\ObjectAccess::getProperty($group, 'Persistence_Object_Identifier', true)] = $group;
+            $groups[ObjectAccess::getProperty($group, 'Persistence_Object_Identifier', true)] = $group;
         }
         return $groups;
     }

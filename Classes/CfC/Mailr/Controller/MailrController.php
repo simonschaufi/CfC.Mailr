@@ -7,8 +7,9 @@ namespace CfC\Mailr\Controller;
  *                                                                        */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Mvc\Controller\ActionController;
 
-class MailrController extends \TYPO3\Flow\Mvc\Controller\ActionController
+class MailrController extends ActionController
 {
 
     /**

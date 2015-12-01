@@ -6,6 +6,7 @@ namespace CfC\Mailr\Controller\Module\Mail;
  *                                                                        *
  *                                                                        */
 
+use CfC\Mailr\Domain\Model\Member;
 use TYPO3\Flow\Annotations as Flow;
 
 /**
@@ -38,7 +39,7 @@ class MemberController extends \TYPO3\Neos\Controller\Module\AbstractModuleContr
      * @param \CfC\Mailr\Domain\Model\Member $member
      * @Flow\IgnoreValidation("$member")
      */
-    public function addAction(\CfC\Mailr\Domain\Model\Member $member = null)
+    public function addAction(Member $member = null)
     {
         $this->view->assign('member', $member);
     }
@@ -46,7 +47,7 @@ class MemberController extends \TYPO3\Neos\Controller\Module\AbstractModuleContr
     /**
      * @param \CfC\Mailr\Domain\Model\Member $member
      */
-    public function createAction(\CfC\Mailr\Domain\Model\Member $member)
+    public function createAction(Member $member)
     {
         $this->memberRepository->add($member);
         $this->addFlashMessage('The member has been added.');
@@ -57,7 +58,7 @@ class MemberController extends \TYPO3\Neos\Controller\Module\AbstractModuleContr
      * @param \CfC\Mailr\Domain\Model\Member $member
      * @return string
      */
-    public function showAction(\CfC\Mailr\Domain\Model\Member $member)
+    public function showAction(Member $member)
     {
         return 'rating: '.$member->getRating();
     }
@@ -66,7 +67,7 @@ class MemberController extends \TYPO3\Neos\Controller\Module\AbstractModuleContr
     /**
      * @param \CfC\Mailr\Domain\Model\Member $member
      */
-    public function viewAction(\CfC\Mailr\Domain\Model\Member $member)
+    public function viewAction(Member $member)
     {
         // TODO: filter by list
         $groups = $this->groupRepository->findAll();
@@ -75,8 +76,11 @@ class MemberController extends \TYPO3\Neos\Controller\Module\AbstractModuleContr
         $this->view->assign('groupList', $groups);
     }
 
-
-    public function editGroupsAction(\CfC\Mailr\Domain\Model\Member $member, array $groups)
+    /**
+     * @param \CfC\Mailr\Domain\Model\Member $member
+     * @param array $groups
+     */
+    public function editGroupsAction(Member $member, array $groups)
     {
     }
 }

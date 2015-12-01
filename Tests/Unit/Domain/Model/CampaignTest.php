@@ -5,11 +5,12 @@ namespace CfC\Mailr\Tests\Unit\Domain\Model;
  * This script belongs to the TYPO3 Flow package "CfC.Mailr".             *
  *                                                                        *
  *                                                                        */
+use TYPO3\Flow\Tests\UnitTestCase;
 
 /**
  * Testcase for Campaign
  */
-class CampaignTest extends \TYPO3\Flow\Tests\UnitTestCase
+class CampaignTest extends UnitTestCase
 {
 
     /**

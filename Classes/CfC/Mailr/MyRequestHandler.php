@@ -1,7 +1,9 @@
 <?php
 namespace CfC\Mailr;
 
-class MyRequestHandler implements \TYPO3\Flow\Core\RequestHandlerInterface
+use TYPO3\Flow\Core\RequestHandlerInterface;
+
+class MyRequestHandler implements RequestHandlerInterface
 {
 
     /**

@@ -2,13 +2,14 @@
 namespace CfC\Mailr\Command;
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Cli\CommandController;
 
 /**
  * Command controller for mailr
  *
  * @Flow\Scope("singleton")
  */
-class MailrCommandController extends \TYPO3\Flow\Cli\CommandController
+class MailrCommandController extends CommandController
 {
 
     /**

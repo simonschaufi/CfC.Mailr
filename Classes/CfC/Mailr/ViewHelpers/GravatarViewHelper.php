@@ -5,6 +5,7 @@ namespace CfC\Mailr\ViewHelpers;
  * This script belongs to the TYPO3 Flow package "CfC.Mailr".             *
  *                                                                        *
  *                                                                        */
+use TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
 /**
  * A view helper to display a Gravatar
@@ -19,7 +20,7 @@ namespace CfC\Mailr\ViewHelpers;
  * <img class="gravatar" src="http://www.gravatar.com/avatar/<hash>?d=http%3A%2F%2Fdomain.com%2Fgravatar_default.gif" />
  *
  */
-class GravatarViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class GravatarViewHelper extends AbstractTagBasedViewHelper
 {
 
     /**
