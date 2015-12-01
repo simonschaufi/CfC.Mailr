@@ -60,7 +60,7 @@ class MemberController extends \TYPO3\Neos\Controller\Module\AbstractModuleContr
      */
     public function showAction(Member $member)
     {
-        return 'rating: '.$member->getRating();
+        return 'rating: ' . $member->getRating();
     }
 
 

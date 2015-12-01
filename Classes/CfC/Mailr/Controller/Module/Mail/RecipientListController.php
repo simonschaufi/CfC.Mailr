@@ -109,7 +109,7 @@ class RecipientListController extends \TYPO3\Neos\Controller\Module\AbstractModu
         $member->setRecipientList($recipientList);
 
         $this->memberRepository->add($member);
-        $this->addFlashMessage('Member "'.$email.'" added.');
+        $this->addFlashMessage('Member "' . $email . '" added.');
         $this->redirect('members', null, null, array('recipientList' => $recipientList));
     }
 

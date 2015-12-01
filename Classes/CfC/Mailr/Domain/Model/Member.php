@@ -192,7 +192,7 @@ class Member extends AbstractParty
     public function getName()
     {
         //TODO switch in english?
-        return $this->firstName.' '.$this->lastName;
+        return $this->firstName . ' ' . $this->lastName;
     }
 
 

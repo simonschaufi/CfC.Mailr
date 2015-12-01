@@ -1,4 +1,4 @@
-[![StyleCI](https://styleci.io/repos/11291123/shield?style=flat)](https://styleci.io/repos/11291123) [![Code Climate](https://codeclimate.com/github/simonschaufi/CfC.Mailr/badges/gpa.svg)](https://codeclimate.com/github/simonschaufi/CfC.Mailr)
+[![StyleCI](https://styleci.io/repos/11291123/shield?style=flat)](https://styleci.io/repos/11291123) [![Code Climate](https://codeclimate.com/github/simonschaufi/CfC.Mailr/badges/gpa.svg)](https://codeclimate.com/github/simonschaufi/CfC.Mailr) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/simonschaufi/CfC.Mailr/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/simonschaufi/CfC.Mailr/?branch=master)
 
 # CfC.Mailr
 
