@@ -188,7 +188,7 @@ class Member extends \TYPO3\Party\Domain\Model\AbstractParty
     public function getName()
     {
         //TODO switch in english?
-        return $this->firstName.' '.$this->lastName;
+        return $this->firstName . ' ' . $this->lastName;
     }
 
 
