@@ -1,14 +1,14 @@
 {
-	"name":"cfc\/mailr",
-	"type":"typo3-flow-package",
-	"description":null,
-	"version":null,
-	"require":{
-		"typo3\/flow":"*"
+	"name": "cfc/mailr",
+	"type": "typo3-flow-package",
+	"description": "Newsletter Package for Neos",
+	"version": null,
+	"require": {
+		"typo3/flow": "*"
 	},
-	"autoload":{
-		"psr-0":{
-			"CfC\\Mailr":"Classes"
+	"autoload": {
+		"psr-0": {
+			"CfC\\Mailr": "Classes"
 		}
 	}
 }
